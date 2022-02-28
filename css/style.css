@@ -406,10 +406,17 @@ body {
   /*--------------------------------------------------------------
   # Hero Section
   --------------------------------------------------------------*/
+  .carousel-inner {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background:black;
+  }
   .carousel-inner img {
     width: 100%;
     height: 100%;
     text-align: center;
+    opacity: 0.65;
   }
 
   #hero {
