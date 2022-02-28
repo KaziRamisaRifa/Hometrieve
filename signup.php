@@ -13,7 +13,7 @@
     <style>
 body
 {
-  background-image: url('image/signup_bg.jpg');
+  background-image: url('assets/image/signup_bg.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
