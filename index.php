@@ -84,7 +84,7 @@ if (isset($_SESSION["username"])) {
       <div class="carousel-item active">
         <img src="assets/image/index_c_1.jpg" alt="Los Angeles" width="100%" height="auto">
         <div class="carousel-caption">
-          <h1 class="text-white display-6 font-weight-bold">Rent a house</h1>
+          <h1 class="text-white display-6 font-weight-bold"><strong>Rent a house</strong></h1>
           <p class="text-white font-weight-bold">Get your desired accommodation!</p>
         </div>
       </div>
@@ -117,7 +117,6 @@ if (isset($_SESSION["username"])) {
     <div class="blog" data-aos="fade-up" data-aos-delay=100>
       <div class="container">
         <h1 class="text-center font-weight-bold text-dark text-capitalize pt-5">Check Out Our Services</h1>
-        <hr class="w-25 pt-4">
         <div class="row mb-5">
 
           <div class="col-md-4 col-lg-4 col-sm-12">
