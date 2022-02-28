@@ -1,0 +1,33 @@
+body {
+    background-image: url('../image/login_bg.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.card-holder{
+    height: 100vh;
+    align-items: center;
+}
+
+.card{
+    margin: 20px auto 20px auto;
+    padding: 10px;
+    max-width: 80%;
+    height: 350px;
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+    border-radius: 15px;
+    background: rgba(255,255,255,0.1);
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    border-left: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(4px);
+    color: rgb(221, 221, 221);
+  
+  }
+
+label{
+    color: black;
+}
