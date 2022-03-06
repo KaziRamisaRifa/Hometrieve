@@ -29,11 +29,11 @@ body
    <body>
      <article class="card-body mx-auto" style="max-width: 750px;">
      <div class="card bg-light">
-       <article class="card-body mx-auto" style="max-width: 800px;">
-       <div class="container-fluid">
+      <article class="card-body mx-auto" style="max-width: 800px;">
+        <div class="container-fluid">
          <h2 class="text-center text-dark text-capitalize pt-4">Add House</h2>
          <p class="text-center text-dark">Fill up the form to add your house!</p>
-         <form action="donor_signup.php" id="signform" method="POST">
+         <form action="add_houses.php" id="signform" method="POST">
            <div class="row">
              <div class="col-md-12">
                <div class="form-group input-group">
@@ -50,7 +50,7 @@ body
                   <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                   </div>
-                  <input name="email" class="form-control" placeholder="Email Address" type="email" required="">
+                  <input name="email" class="form-control" placeholder="Owner Email Address" type="email" required="">
                 </div>
               </div>
               <div class="col-md-6">
@@ -58,7 +58,7 @@ body
                   <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-phone">  </i> </span>
                   </div>
-                  <input name="contact" class="form-control" placeholder="Contact Number" type="text"  required="">
+                  <input name="contact" class="form-control" placeholder="Owner Contact Number" type="text"  required="">
                 </div>
               </div>
             </div>
@@ -199,20 +199,26 @@ body
                 </div>
               </div>
             </div>
-    <div class="form-group">
-        <button type="submit" name="signup" form="signform" class="btn btn-primary btn-block"> Add House  </button>
+            <div class="row">
+             <div class="col-md-12">
+                <div class="form-group input-group">
+                  <div class="input-group-prepend">
+                   <span class="input-group-text"> <i class="fa fa-picture-o"></i> </span>
+                  </div>
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                      <label class="custom-file-label" for="inputGroupFile01">Upload House Pictures</label>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="form-group">
+              <button type="submit" name="signup" form="signform" class="btn btn-primary btn-block"> Add House  </button>
+            </div>
+          </form>
+        </div>
+      </article>
     </div>
-    
-</form>
-</article>
-</div>
-
-</div>
-
-
-
-</article>
-</nav>
-</turna>
-</body>
+    </article>
+  </body>
 </html>
