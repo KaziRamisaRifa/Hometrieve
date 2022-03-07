@@ -1,67 +1,67 @@
-.button-63 {
+.button2 {
     margin: auto; 
+    border-radius: 8px;
     align-items: center;
     background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
-    border: 0;
-    border-radius: 8px;
     box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    display: flex;
+    border: 0;
     font-family: Phantomsans, sans-serif;
     font-size: 20px;
-    justify-content: center;
-    line-height: 1em;
-    max-width: 200%;
-    min-width: 140px;
     padding: 19px 24px;
     text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
+    max-width: 200%;
+    min-width: 140px;
+    box-sizing: border-box;
+    justify-content: center;
+    line-height: 1em;
     touch-action: manipulation;
     white-space: nowrap;
     cursor: pointer;
-     
+    user-select: none;
+    -webkit-user-select: none;
+    color: #FFFFFF;
+    display: flex;  
   }
   
-  .button-63:active,
-  .button-63:hover {
+  .button2:active,
+  .button2:hover {
     outline: 0;
   }
   
   @media (min-width: 768px) {
-    .button-63 {
+    .button2 {
       font-size: 24px;
       min-width: 196px;
     }
   }
-  .button-62 {
+  .button1 {
     background: linear-gradient(to bottom right, #AF40FF, #5B42F3 50%,#00DDEB);
-    border: 0;
-    border-radius: 12px;
     color: #FFFFFF;
     cursor: pointer;
-    display: inline-block;
-    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 2.5;
-    outline: transparent;
-    padding: 0 1rem;
+    border: 0;
+    border-radius: 12px;
     text-align: center;
     text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    outline: transparent;
+    padding: 0 1rem;
+    line-height: 2.5;
+    touch-action: manipulation;
+    white-space: nowrap;
     transition: box-shadow .2s ease-in-out;
     user-select: none;
     -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
+    
   }
   
-  .button-62:not([disabled]):focus {
+  .button1:not([disabled]):focus {
     box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
   }
   
-  .button-62:not([disabled]):hover {
+  .button1:not([disabled]):hover {
     box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
   }
   h4 {

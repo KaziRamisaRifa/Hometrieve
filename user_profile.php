@@ -28,7 +28,7 @@ body
   <div class="container">
   
   <h2><strong>Welcome Ramisa Rifa!</strong></h2>
-  <a class="button-62" href="donor_login.php" role="button">Log Out</a>
+  <a class="button1" href="donor_login.php" role="button">Log Out</a>
   
   
   <div class="row ">
@@ -84,7 +84,7 @@ body
               <label>House Status</label>
             </div>
             <div class="col-md-6">
-              <p>Active</p>
+              <p>Active <a href="favourite_list.php">(View Details)</a></p>
             </div>
           </div>
           <div class="row">
@@ -92,7 +92,7 @@ body
               <label>Land Status</label>
             </div>
             <div class="col-md-6">
-              <p>Active</p>
+              <p>Active <a href="favourite_list.php">(View Details)</a></p>
             </div>
           </div>
           <div class="row">
@@ -116,17 +116,17 @@ body
     </div>
     <div class="col-md-2">
       <br>
-      <a class="button-62" href="donor_login.php" role="button">Edit Profile</a>
+      <a class="button1" href="donor_login.php" role="button">Edit Profile</a>
     </div>
     <div class="col-md-5 col-lg-5 col-sm-12">
   <div class="row pt-5">
     
-    <button class="button-63" role="button" onclick="window.location =''"><i class="fa fa-search"></i> Search a house for rent now!</button>
+    <button class="button2" role="button" onclick="window.location =''"><i class="fa fa-search"></i> Search a house for rent now!</button>
 </div>
 <div class="row pt-5">
-      <button class="button-63" onclick="window.location ='add_houses.php'"  role="button"><i class="fa fa-home"> Add House +  </i>  </button>
+      <button class="button2" onclick="window.location ='add_houses.php'"  role="button"><i class="fa fa-home"> Add House +  </i>  </button>
       <br>
-      <button class="button-63" onclick="window.location ='add_lands.php'"  role="button"><i class="fa fa-tree"> Add Land + </i></button>
+      <button class="button2" onclick="window.location ='add_lands.php'"  role="button"><i class="fa fa-tree"> Add Land + </i></button>
     
   </div>
   
