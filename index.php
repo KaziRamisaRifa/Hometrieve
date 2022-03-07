@@ -55,7 +55,12 @@ if (isset($_SESSION["username"])) {
               <li><a href="">Buy Land</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="addproperty.php">Add Property</a></li>
+          <li class="dropdown"><a href="#team"><span>Add property</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="add_houses.php">Add Houses</a></li>
+              <li><a href="add_lands.php">Add Lands</a></li>
+            </ul>
+          </li>
           <li><a class="nav-link scrollto" href="#">Contact</a></li>
           <li><a class="nav-link scrollto" href="#">Register</a></li>
 
@@ -239,8 +244,6 @@ if (isset($_SESSION["username"])) {
   <!-- <div id="preloader"></div> -->
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- <div class="popup-ol"></div> -->
-
   <!-- JS CDN Files -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -250,26 +253,8 @@ if (isset($_SESSION["username"])) {
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-  <!-- Template Main JS File -->
+  <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
-
-  <!-- <script>
-    /**
-     * Popup Overlay
-     */
-    $(window).load(function() {
-      const overlay = $('<div class="popup-ol"></div>');
-      overlay.appendTo(document.body);
-      overlay.show();
-      // $('.hack-hero').appendTo(overlay);
-      $('.hack-hero').show();
-      $('.x').click(function() {
-        overlay.remove()
-        $('.hack-hero').remove();
-
-      })
-    })
-  </script> -->
 
 </body>
 
