@@ -27,6 +27,7 @@ body
 
   
    <body>
+   
      <article class="card-body mx-auto" style="max-width: 750px;">
      <div class="card bg-light">
       <article class="card-body mx-auto" style="max-width: 800px;">
