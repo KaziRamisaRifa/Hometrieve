@@ -50,7 +50,7 @@
               <div class="col-md-6">
                 <div class="form-group input-group">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-phone">  </i> </span>
+                    <span class="input-group-text"> <i class="fa fa-phone"> </i> </span>
                   </div>
                   <input name="contact" class="form-control" placeholder="Owner Contact Number" type="text"  required="">
                 </div>
