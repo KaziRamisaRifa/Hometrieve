@@ -1,3 +1,82 @@
+<?php
+
+  include 'connection.php';
+
+if (isset($_POST['log_in'])) 
+{
+    $dbemailcontact = strip_tags($_POST['emailcontact']);
+    $dbpass = strip_tags($_POST['password']);
+
+    $word = "@";
+    if(strpos($dbemailcontact, $word) !== false)
+    {
+        $sql = "SELECT email, password FROM user";
+        $result = mysqli_query($conn,$sql);
+        $sql = "SELECT email, password FROM user";
+        $result = mysqli_query($conn,$sql);
+        if (mysqli_num_rows($result) > 0) 
+        {
+            // output data of each row
+            while($row = mysqli_fetch_assoc($result)) 
+            {
+                $Email= $row["email"] ;
+                $Pass= $row["password"];
+                // Check if the username and the password they entered was correct
+                if ( $Email == $dbemailcontact && $Pass == $dbpass) 
+                {
+                    $sql = "SELECT id
+                    FROM user
+                    WHERE email='$dbemailcontact'";
+                    $result = mysqli_query($conn,$sql);
+                    $row = mysqli_fetch_assoc($result);
+                    $dbid= $row["id"];
+                    header("Location: user_profile.php?id=$dbid");
+                } 
+                else 
+                {
+                    // Display the alert box
+                    echo "<script>
+                    alert('Invalid Email or Password!');
+                    window.location.href='login.php';
+                    </script>";
+                }
+            }
+        }
+    } 
+    else
+    {
+        $sql = "SELECT contact, password FROM user";
+        $result = mysqli_query($conn,$sql);
+        // output data of each row
+        while($row = mysqli_fetch_assoc($result)) 
+        {
+            $Contact= $row["contact"] ;
+            $Pass= $row["password"];
+            // Check if the username and the password they entered was correct
+            if ( $Contact == $dbemailcontact && $Pass == $dbpass) 
+            {
+                $sql = "SELECT id
+                FROM user
+                WHERE contact='$dbemailcontact'";
+                $result = mysqli_query($conn,$sql);
+                $row = mysqli_fetch_assoc($result);
+                $dbid= $row["id"];
+                header("Location: user_profile.php?id=$dbid");
+            } 
+            else 
+            {
+                // Display the alert box
+                echo "<script>
+                alert('Invalid Email or Password!');
+                window.location.href='login.php';
+                </script>";
+            }
+        }
+    }
+
+    
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -14,13 +93,6 @@
 </head>
 
 <body>
-    <?php
-    session_start();
-    if (isset($_POST["log_in"])) {
-        $_SESSION["username"] = $_POST["emailcontact"];
-        $_SESSION["password"] = $_POST["password"];
-        header('location:index.php');
-    }?>
     <div class="container">
         <div class="row card-holder">
             <div class="col-lg-3"></div>
@@ -40,7 +112,7 @@
                         <div class="col-md-12 text-center">
                             <button name="log_in" class="btn btn-primary w-50"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
                             <hr>
-                            <button type="submit" class="btn btn-danger" onclick="window.location = 'register.php';"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</button>
+                            <button type="submit" class="btn btn-danger" onclick="window.location = 'register.php';"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</button>
                             <button type="button" onclick="window.location = '<?php echo $loginURL ?>';" class="btn btn-danger"><i class="fa fa-google"></i> Login With Google</button>
                         </div>
                     </form>
