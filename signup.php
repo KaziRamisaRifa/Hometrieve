@@ -1,3 +1,61 @@
+<?php
+
+  include 'connection.php';
+
+if (isset($_POST['sign_up'])) 
+{
+    $dbfname = strip_tags($_POST['fname']);
+    $dblname = strip_tags($_POST['lname']);
+    $dbemail = strip_tags($_POST['email']);
+    $dbcontact = strip_tags($_POST['contact']);
+    $dbpass = strip_tags($_POST['password']);
+
+    $sql = "SELECT email,contact FROM user";
+    $result = mysqli_query($conn,$sql);
+
+    if (mysqli_num_rows($result) > 0) 
+    {
+        // output data of each row
+        while($row = mysqli_fetch_assoc($result)) 
+        {
+            $dbbemail= $row["email"];
+            $dbbcontact= $row["contact"];
+            // Check if the username they entered was correct
+            if ($dbbemail == $dbemail) 
+            {
+                echo "<script>
+                alert('Same Email Exist! Try Another Email!');
+                window.location.href='signup.php';
+                </script>";
+                exit();
+
+            }
+            else if ($dbbcontact == $dbcontact)
+            {
+                echo "<script>
+                alert('Same Contact Number Exist! Try Another Contact Number!');
+                window.location.href='signup.php';
+                </script>";
+                exit();
+
+            }
+
+        }
+    }
+    
+    $sql="INSERT INTO user(first_name, last_name, email, contact, password)
+    VALUES ('$dbfname','$dblname','$dbemail','$dbcontact','$dbpass')";
+    mysqli_query($conn, $sql);
+    $sql = "SELECT id
+    FROM user
+    WHERE email='$dbemail'";
+    $result = mysqli_query($conn,$sql);
+    $row = mysqli_fetch_assoc($result);
+    $dbid= $row["id"];
+    header("Location: user_profile.php?id=$dbid");
+}
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,7 +92,7 @@ body
                     </p>
                     <hr class="w-75">
                     <p class="text-center text-dark">OR</p>
-                    <form action="user_signup.php" id="signform" method="POST">
+                    <form action="signup.php" id="signform" method="POST">
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-user"></i> </span>
@@ -51,7 +109,7 @@ body
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                             </div>
-                            <input name="email" class="form-control" placeholder="Email address" type="email" required="">
+                            <input name="email" class="form-control" placeholder="Email address (if any)" type="email" required="">
                         </div>
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
@@ -66,7 +124,7 @@ body
                                 <input name="password"class="form-control" placeholder="Create password" type="password" required=" ">
                         </div>
                         <div class="form-group">
-                            <button type="submit" name="signup" form="signform" class="btn btn-primary btn-block"> Create Account  </button>
+                            <button type="submit" name="sign_up" form="signform" class="btn btn-primary btn-block"> Create Account  </button>
                         </div>
                         <p class="text-center text-primary"><a href="user_login.php">Have an account? Log In</a> </p>
                     </form>
