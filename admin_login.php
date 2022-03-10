@@ -1,3 +1,45 @@
+<?php
+
+  include 'connection.php';
+
+if (isset($_POST['log_in'])) 
+{
+    $dbemail = strip_tags($_POST['email']);
+    $dbpass = strip_tags($_POST['password']);
+
+    $sql = "SELECT email, password FROM admin";
+    $result = mysqli_query($conn,$sql);
+    if (mysqli_num_rows($result) > 0) 
+    {
+        // output data of each row
+        while($row = mysqli_fetch_assoc($result)) 
+        {
+            $Email= $row["email"] ;
+            $Pass= $row["password"];
+            // Check if the username and the password they entered was correct
+            if ( $Email == $dbemail && $Pass == $dbpass) 
+            {
+                $sql = "SELECT id
+                FROM admin
+                WHERE email='$dbemail'";
+                $result = mysqli_query($conn,$sql);
+                $row = mysqli_fetch_assoc($result);
+                $dbid= $row["id"];
+                header("Location: admin_dashboard.php?id=$dbid");
+            } 
+            else 
+            {
+                // Display the alert box
+                echo "<script>
+                alert('Invalid Email or Password!');
+                window.location.href='admin_login.php';
+                </script>";
+            }
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -13,14 +55,6 @@
     <link rel="stylesheet" href="assets/css/login.css">
 </head>
 <body>
-    <?php
-    session_start();
-    if (isset($_POST["log_in"])) {
-        $_SESSION["username"] = $_POST["emailcontact"];
-        $_SESSION["password"] = $_POST["password"];
-        header('location:index.php');
-    }?>
-
     <div class="container">
         <div class="row card-holder">
             <div class="col-lg-3"></div>
@@ -28,7 +62,7 @@
                 <h1 class="text-center text-dark text-capitalize pt-3">Admin Login</h1>
                 <hr class="w-25 pt-3">
                 <div class="card">
-                    <form id="login_form" method="POST" action="login.php">
+                    <form id="login_form" method="POST" action="admin_login.php">
                         <div class="form-group">
                             <label for="email">Email address</label>
                             <input name="email" class="form-control" placeholder="Enter email" id="email" type="email" required="">
