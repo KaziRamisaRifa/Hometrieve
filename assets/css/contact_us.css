@@ -58,3 +58,39 @@ transition: all 200ms;
 line-height: 50px;
 }
 }
+
+
+.card-holder{
+    height: 100vh;
+    align-items: center;
+}
+
+.card{
+    margin: 20px auto 20px auto;
+    padding: 10px;
+    max-width: 400%;
+    height: 450px;
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+    border-radius: 15px;
+    background: linear-gradient(135deg, #f34079 40%, #fc894d);
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    border-left: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(4px);
+    
+  
+  }
+
+label{
+    color: black;
+}
+
+.vl {
+    border-left: 6px solid linear-gradient(135deg, #f34079 40%, #fc894d);
+    height: 500px;
+  }
+
+  
