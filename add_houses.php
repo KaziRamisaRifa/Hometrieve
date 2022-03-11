@@ -1,3 +1,48 @@
+<?php
+
+  include 'connection.php';
+
+if (isset($_POST['add_house'])) 
+{
+    $dbname = strip_tags($_POST['ownername']);
+    $dbemail = strip_tags($_POST['email']);
+    $dbcontact = strip_tags($_POST['contact']);
+    $dbpurpose = strip_tags($_POST['purpose']);
+    $dbtype = strip_tags($_POST['type']);
+    $dblocation = strip_tags($_POST['location']);
+    $dbaddress = strip_tags($_POST['address']);
+    $dbareasize = strip_tags($_POST['areasize']);
+    $dbprice = strip_tags($_POST['price']);
+    $dbfloor = strip_tags($_POST['floor']);
+    $dbbeds = strip_tags($_POST['beds']);
+    $dbbaths = strip_tags($_POST['baths']);
+    $dbbalcony = strip_tags($_POST['balcony']);
+    $dbdescription = strip_tags($_POST['description']);
+
+    $sql="INSERT INTO houses(user_id, owner_name, owner_email, owner_contact, purpose, type, location, address, area_size, price, floor_no,	beds,	baths, balcony,	description)
+    VALUES ('1', '$dbname','$dbemail','$dbcontact','$dbpurpose', '$dbtype', '$dblocation','$dbaddress','$dbareasize','$dbprice','$dbfloor','$dbbeds','$dbbaths','$dbbalcony','$dbdescription')";
+
+    if (mysqli_query($conn, $sql)) 
+    {
+      $last_id = mysqli_insert_id($conn);
+    }
+
+
+    $uploadFolder = 'assets/uploads/';
+    foreach ($_FILES['imageFile']['tmp_name'] as $key => $image) 
+    {
+        $imageTmpName = $_FILES['imageFile']['tmp_name'][$key];
+        $imageName = $_FILES['imageFile']['name'][$key];
+        $result = move_uploaded_file($imageTmpName,$uploadFolder.$imageName);
+        // save to database
+        $sql = "INSERT INTO house_image(house_id,image) value ('$last_id','$imageName')";
+        mysqli_query($conn, $sql);
+    }
+    header("Location: user_profile.php?id=$last_id");
+    
+    
+}
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -27,7 +72,7 @@
         <div class="container-fluid">
          <h2 class="text-center text-dark text-capitalize pt-4">Add House</h2>
          <p class="text-center text-dark">Fill up the form to add your house!</p>
-         <form action="add_houses.php" id="signform" method="POST">
+         <form action="add_houses.php" id="addhouse" method="POST" enctype="multipart/form-data">
            <div class="row">
              <div class="col-md-12">
                <div class="form-group input-group">
@@ -77,8 +122,9 @@
                   <select name="type" class="form-control"  required="" >
                     <option value="" disabled selected> Select Type</option>
                     <option>Apartment</option>
+                    <option>Bachelor</option>
+                    <option>Colonial</option>
                     <option>Duplex</option>
-                    <option>Other</option>
                   </select>
                 </div>
               </div>
@@ -89,11 +135,25 @@
                  <div class="input-group-prepend">
                    <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
                   </div>
-                  <select name="type" class="form-control"  required="" >
+                  <select name="location" class="form-control"  required="" >
                     <option value="" disabled selected> Select Location</option>
-                    <option>Dhaka</option>
-                    <option>Chittagong</option>
-                    <option>Barishal</option>
+                    <option>Banani</option>
+                    <option>Baridhara</option>
+                    <option>Bashundhara</option>
+                    <option>Dhanmondi</option>
+                    <option>Gulshan</option>
+                    <option>Jatrabari</option>
+                    <option>Khilgaon</option>
+                    <option>Khilkhet</option>
+                    <option>Lalbag</option>
+                    <option>Mirpur</option>
+                    <option>Mohammadpur</option>
+                    <option>Motijheel</option>
+                    <option>Nawabganj</option>
+                    <option>New market</option>
+                    <option>Savar</option>
+                    <option>Tejgaon</option>
+                    <option>Uttara</option>
                   </select>
                 </div>
               </div>
@@ -114,7 +174,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-th-large"></i> </span>
                   </div>
-                  <input name="area_size" class="form-control" placeholder="Area Size" type="text" required="">
+                  <input name="areasize" class="form-control" placeholder="Area Size" type="text" required="">
                   <div class="input-group-append">
                     <span class="input-group-text">sqft</span>
                   </div>
@@ -152,6 +212,12 @@
                     <option>2</option>
                     <option>3</option>
                     <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
                   </select>
                 </div>
               </div>
@@ -168,6 +234,12 @@
                     <option>2</option>
                     <option>3</option>
                     <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
                   </select>
                 </div>
               </div>
@@ -182,6 +254,12 @@
                     <option>2</option>
                     <option>3</option>
                     <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
                   </select>
                 </div>
               </div>
@@ -200,14 +278,14 @@
                    <span class="input-group-text"> <i class="fa fa-picture-o"></i> </span>
                   </div>
                   <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                    <input type="file" name="imageFile[]" class="custom-file-input" id="inputGroupFile01"  multiple>
                       <label class="custom-file-label" for="inputGroupFile01">Upload House Pictures</label>
                     </div>
                   </div>
                 </div>
             </div>
             <div class="form-group">
-              <button type="submit" name="signup" form="signform" class="btn btn-primary btn-block"> Add House  </button>
+              <button type="submit" name="add_house" form="addhouse" class="btn btn-primary btn-block"> Add House  </button>
             </div>
           </form>
         </div>
