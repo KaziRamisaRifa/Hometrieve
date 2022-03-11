@@ -1,8 +1,49 @@
+<?php
+
+  include 'connection.php';
+
+if (isset($_POST['add_land'])) 
+{
+    $dbname = strip_tags($_POST['ownername']);
+    $dbemail = strip_tags($_POST['email']);
+    $dbcontact = strip_tags($_POST['contact']);
+    $dblocation = strip_tags($_POST['location']);
+    $dbaddress = strip_tags($_POST['address']);
+    $dbareasize = strip_tags($_POST['areasize']);
+    $dbprice = strip_tags($_POST['price']);
+    $dbdescription = strip_tags($_POST['description']);
+
+    $sql="INSERT INTO lands(user_id, owner_name, owner_email, owner_contact, location, address, area_size, price,	description)
+    VALUES ('1', '$dbname','$dbemail','$dbcontact', '$dblocation','$dbaddress','$dbareasize','$dbprice','$dbdescription')";
+
+    if (mysqli_query($conn, $sql)) 
+    {
+      $last_id = mysqli_insert_id($conn);
+    }
+
+
+    $uploadFolder = 'assets/uploads/';
+    foreach ($_FILES['imageFile']['tmp_name'] as $key => $image) 
+    {
+        $imageTmpName = $_FILES['imageFile']['tmp_name'][$key];
+        $imageName = $_FILES['imageFile']['name'][$key];
+        $result = move_uploaded_file($imageTmpName,$uploadFolder.$imageName);
+        // save to database
+        $sql = "INSERT INTO land_image(land_id,image) value ('$last_id','$imageName')";
+        mysqli_query($conn, $sql);
+    }
+    header("Location: user_profile.php?id=$last_id");
+    
+    
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
 
-    <title>Add House</title>
+    <title>Add Land</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -26,7 +67,7 @@
         <div class="container-fluid">
          <h2 class="text-center text-dark text-capitalize pt-4">Add Land</h2>
          <p class="text-center text-dark">Fill up the form to add your Land!</p>
-         <form action="add_lands.php" id="add_land" method="POST">
+         <form action="add_lands.php" id="addland" method="POST" enctype="multipart/form-data">
            <div class="row">
              <div class="col-md-12">
                <div class="form-group input-group">
@@ -61,7 +102,7 @@
                  <div class="input-group-prepend">
                    <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
                   </div>
-                  <select name="type" class="form-control"  required="" >
+                  <select name="location" class="form-control"  required="" >
                     <option value="" disabled selected> Select Location</option>
                     <option>Dhaka</option>
                     <option>Chittagong</option>
@@ -86,7 +127,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-th-large"></i> </span>
                   </div>
-                  <input name="area_size" class="form-control" placeholder="Area Size" type="text" required="">
+                  <input name="areasize" class="form-control" placeholder="Area Size" type="text" required="">
                   <div class="input-group-append">
                     <span class="input-group-text">sqft</span>
                   </div>
@@ -118,14 +159,14 @@
                    <span class="input-group-text"> <i class="fa fa-picture-o"></i> </span>
                   </div>
                   <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                  <input type="file" name="imageFile[]" class="custom-file-input" id="inputGroupFile01"  multiple>
                       <label class="custom-file-label" for="inputGroupFile01">Upload Land Pictures</label>
                     </div>
                   </div>
                 </div>
             </div>
             <div class="form-group">
-              <button type="submit" name="add_land" form="add_land" class="btn btn-primary btn-block"> Add Land  </button>
+              <button type="submit" name="add_land" form="addland" class="btn btn-primary btn-block"> Add Land  </button>
             </div>
           </form>
         </div>
