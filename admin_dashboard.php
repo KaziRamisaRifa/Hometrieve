@@ -31,7 +31,6 @@
                 </div>
             </div>
         </header>
-
         <div class="menu-bar">
             <div class="menu">
 

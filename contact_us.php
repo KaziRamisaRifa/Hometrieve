@@ -1,3 +1,24 @@
+<?php
+
+  include 'connection.php';
+
+  if (isset($_POST['contact_us'])) 
+  {
+      // Set variables to represent data from database
+        $dbUname = strip_tags($_POST['name']);
+        $dbEmail = strip_tags($_POST['email']);
+        $dbSub = strip_tags($_POST['subject']);
+        $dbMess = strip_tags($_POST['message']);
+        $sql = "INSERT INTO contact_us (name, email, subject, message)
+        VALUES ('$dbUname', '$dbEmail', '$dbSub', '$dbMess');";
+        mysqli_query($conn, $sql);
+        echo "<script>
+        alert('Thank you For Your Response!');
+        window.location.href='index.php';
+        </script>";
+  }
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -43,9 +64,9 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 mr-auto">
-                    <form id="feed" class="p-5 grey-text " method="POST" action="feedback.php">
+                    <form id="feed" class="p-5 grey-text " method="POST" action="contact_us.php">
                         <div class="md-form form-sm"> Name <i class="fa fa-user prefix"> </i>
-                            <input type="text" name="fname" id="form3" class="form-control form-control-sm" required="">
+                            <input type="text" name="name" id="form3" class="form-control form-control-sm" required="">
                         </div>
                         <br>
                         <div class="md-form form-sm"> Email <i class="fa fa-envelope prefix"></i>
@@ -54,7 +75,7 @@
                         </div>
                         <br>
                         <div class="md-form form-sm"> Subject <i class="fa fa-pencil prefix"></i>
-                            <input type="email" name="email" id="form2" class="form-control form-control-sm" required="">
+                            <input type="text" name="subject" id="form2" class="form-control form-control-sm" required="">
 
                         </div>
                         <br>
@@ -64,7 +85,7 @@
                         </div>
                         <br>
                         <div class="text-center mt-4">
-                            <button class="button-75" role="button" name="feedback" form="feed"> <i class="fa fa-paper-plane-o ml-1"> Send</i></button>
+                            <button class="button-75" role="button" name="contact_us" form="feed"> <i class="fa fa-paper-plane-o ml-1"> Send</i></button>
                          </div>
                     </form>
                 </div>
