@@ -1,3 +1,12 @@
+<?php
+  // Create database connection
+  include 'connection.php';
+
+    $sql = "SELECT * FROM houses";
+    $result = mysqli_query($conn, $sql);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -30,66 +39,33 @@
 <body>
    <h1 class="text-center text-dark text-capitalize pt-5">Houses List</h1>
                 <hr class="w-25 pt-3">
+                
+
    <div class="container">
     <div class="row">
         <div class="col-lg-8 mx-auto">
             <ul class="list-group shadow">
+            <?php
+                while ($row = mysqli_fetch_array($result)) {
+            ?>
                 <li class="list-group-item">
                     <div class="media align-items-lg-center flex-column flex-lg-row p-3">
                         <div class="media-body order-2 order-lg-1">
-                            <h5><strong>Bashundhara | 1800 sqft | For Rent</strong></h5>
-                            <p class="text-muted"><i class="fa fa-bed">  </i> 2 Beds | <i class="fa fa-bath"></i> 2 Baths | <i class="fa fa-trello">  </i> 1 Balcony | <i class="fa fa-arrow-up"></i> 2nd Floor</p>
+                            <h5><strong><?php echo $row['location']; ?> | <?php echo $row['area_size']; ?> sqft | <?php echo $row['purpose']; ?></strong></h5>
+                            <p class="text-muted"><i class="fa fa-bed">  </i> <?php echo $row['beds']; ?> Beds | <i class="fa fa-bath"></i> <?php echo $row['baths']; ?> Baths | <i class="fa fa-trello">  </i> <?php echo $row['balcony']; ?> Balcony | <i class="fa fa-arrow-up"></i> <?php echo $row['floor_no']; ?> Floor No.</p>
                             <div class="d-flex align-items-center justify-content-between mt-1">
-                                <h6><strong><i class="fa fa-money" aria-hidden="true"></i> 64,999 BDT</strong></h6>
+                                <h6><strong><i class="fa fa-money" aria-hidden="true"></i> <?php echo $row['price']; ?> BDT</strong></h6>
                                 <p><a href="favourite_list.php">View Details---></a></p>
                             </div>
                         </div>
                         <img src="assets/image/signup_bg.jpg" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
                     </div> 
                 </li> 
-                <li class="list-group-item">
-                    <div class="media align-items-lg-center flex-column flex-lg-row p-3">
-                        <div class="media-body order-2 order-lg-1">
-                            <h5><strong>Bashundhara | 1800 sqft | For Rent</strong></h5>
-                            <p class="text-muted"><i class="fa fa-bed">  </i> 2 Beds | <i class="fa fa-bath"></i> 2 Baths | <i class="fa fa-trello">  </i> 1 Balcony | <i class="fa fa-arrow-up"></i> 2nd Floor</p>
-                            <div class="d-flex align-items-center justify-content-between mt-1">
-                                <h6><strong><i class="fa fa-money" aria-hidden="true"></i> 64,999 BDT</strong></h6>
-                                <p><a href="favourite_list.php">View Details---></a></p>
-                            </div>
-                        </div>
-                        <img src="assets/image/signup_bg.jpg" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
-                    </div> 
-                </li>
-                <!-- list group item -->
-                <li class="list-group-item">
-                    <div class="media align-items-lg-center flex-column flex-lg-row p-3">
-                        <div class="media-body order-2 order-lg-1">
-                            <h5><strong>Bashundhara | 1800 sqft | For Rent</strong></h5>
-                            <p class="text-muted"><i class="fa fa-bed">  </i> 2 Beds | <i class="fa fa-bath"></i> 2 Baths | <i class="fa fa-trello">  </i> 1 Balcony | <i class="fa fa-arrow-up"></i> 2nd Floor</p>
-                            <div class="d-flex align-items-center justify-content-between mt-1">
-                                <h6><strong><i class="fa fa-money" aria-hidden="true"></i> 64,999 BDT</strong></h6>
-                                <p><a href="favourite_list.php">View Details---></a></p>
-                            </div>
-                        </div>
-                        <img src="assets/image/signup_bg.jpg" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
-                    </div> 
-                </li>
-                <li class="list-group-item">
-                    <div class="media align-items-lg-center flex-column flex-lg-row p-3">
-                        <div class="media-body order-2 order-lg-1">
-                            <h5><strong>Bashundhara | 1800 sqft | For Rent</strong></h5>
-                            <p class="text-muted"><i class="fa fa-bed">  </i> 2 Beds | <i class="fa fa-bath"></i> 2 Baths | <i class="fa fa-trello">  </i> 1 Balcony | <i class="fa fa-arrow-up"></i> 2nd Floor</p>
-                            <div class="d-flex align-items-center justify-content-between mt-1">
-                                <h6><strong><i class="fa fa-money" aria-hidden="true"></i> 64,999 BDT</strong></h6>
-                                <p><a href="favourite_list.php">View Details---></a></p>
-                            </div>
-                        </div>
-                        <img src="assets/image/signup_bg.jpg" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
-                    </div> 
-                </li>
+            <?php }?>
             </ul>
         </div>
     </div>
 </div>
+
 </body>
 </html>
