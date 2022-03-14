@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Web Team - NSU ACM SC</title>
+    <title>WebMasters</title>
     <link rel="icon" href="assets/img/acm-logo.png" type="icon">
 
     <meta content="" name="description">
@@ -119,7 +119,7 @@
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
                         <div class="member">
                             <div class="member-img">
-                                <img src="assets/image/team/Khalid Bin Shafiq.jpg" class="img-fluid" alt="">
+                                <img src="assets/image/team/Kazi Ramisa Rifa1.jpg" class="img-fluid" alt="">
                                 <div class="social">
                                     <a href="#" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
                                     <a href="#" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
