@@ -11,9 +11,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="assets/image/logo1c.jpeg" rel="icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -27,17 +25,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
-    <!-- Template Main CSS File -->
+    <!-- Main CSS File -->
     <link href="css/style.css" rel="stylesheet">
     <!-- Custom CSS File -->
     <link rel="stylesheet" href="assets/css/teams.css">
-
-    <!-- =======================================================
-  * Template Name: BizLand - v3.0.1
-  * Template URL: https://bootstrapmade.com/bizland-bootstrap-business-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -100,7 +91,7 @@
         </div> -->
 
                 <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
                         <div class="member">
                             <div class="member-img">
                                 <img src="assets/image/team/Khalid Bin Shafiq.jpg" class="img-fluid" alt="">
@@ -116,7 +107,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
                         <div class="member">
                             <div class="member-img">
                                 <img src="assets/image/team/Kazi Ramisa Rifa1.jpg" class="img-fluid" alt="">
@@ -132,7 +123,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="500">
                         <div class="member">
                             <div class="member-img">
                                 <img src="assets/image/team/Khalid Bin Shafiq.jpg" class="img-fluid" alt="">
