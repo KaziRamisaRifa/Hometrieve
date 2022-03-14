@@ -1,39 +1,32 @@
 <?php
 
-  include 'connection.php';
+include 'connection.php';
 
-if (isset($_POST['log_in'])) 
-{
+if (isset($_POST['log_in'])) {
     $dbemailcontact = strip_tags($_POST['emailcontact']);
     $dbpass = strip_tags($_POST['password']);
 
     $word = "@";
-    if(strpos($dbemailcontact, $word) !== false)
-    {
+    if (strpos($dbemailcontact, $word) !== false) {
         $sql = "SELECT email, password FROM user";
-        $result = mysqli_query($conn,$sql);
+        $result = mysqli_query($conn, $sql);
         $sql = "SELECT email, password FROM user";
-        $result = mysqli_query($conn,$sql);
-        if (mysqli_num_rows($result) > 0) 
-        {
+        $result = mysqli_query($conn, $sql);
+        if (mysqli_num_rows($result) > 0) {
             // output data of each row
-            while($row = mysqli_fetch_assoc($result)) 
-            {
-                $Email= $row["email"] ;
-                $Pass= $row["password"];
+            while ($row = mysqli_fetch_assoc($result)) {
+                $Email = $row["email"];
+                $Pass = $row["password"];
                 // Check if the username and the password they entered was correct
-                if ( $Email == $dbemailcontact && $Pass == $dbpass) 
-                {
+                if ($Email == $dbemailcontact && $Pass == $dbpass) {
                     $sql = "SELECT id
                     FROM user
                     WHERE email='$dbemailcontact'";
-                    $result = mysqli_query($conn,$sql);
+                    $result = mysqli_query($conn, $sql);
                     $row = mysqli_fetch_assoc($result);
-                    $dbid= $row["id"];
+                    $dbid = $row["id"];
                     header("Location: user_profile.php?id=$dbid");
-                } 
-                else 
-                {
+                } else {
                     // Display the alert box
                     echo "<script>
                     alert('Invalid Email or Password!');
@@ -42,29 +35,23 @@ if (isset($_POST['log_in']))
                 }
             }
         }
-    } 
-    else
-    {
+    } else {
         $sql = "SELECT contact, password FROM user";
-        $result = mysqli_query($conn,$sql);
+        $result = mysqli_query($conn, $sql);
         // output data of each row
-        while($row = mysqli_fetch_assoc($result)) 
-        {
-            $Contact= $row["contact"] ;
-            $Pass= $row["password"];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $Contact = $row["contact"];
+            $Pass = $row["password"];
             // Check if the username and the password they entered was correct
-            if ( $Contact == $dbemailcontact && $Pass == $dbpass) 
-            {
+            if ($Contact == $dbemailcontact && $Pass == $dbpass) {
                 $sql = "SELECT id
                 FROM user
                 WHERE contact='$dbemailcontact'";
-                $result = mysqli_query($conn,$sql);
+                $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_assoc($result);
-                $dbid= $row["id"];
+                $dbid = $row["id"];
                 header("Location: user_profile.php?id=$dbid");
-            } 
-            else 
-            {
+            } else {
                 // Display the alert box
                 echo "<script>
                 alert('Invalid Email or Password!');
@@ -73,8 +60,6 @@ if (isset($_POST['log_in']))
             }
         }
     }
-
-    
 }
 ?>
 <!DOCTYPE html>
@@ -83,13 +68,15 @@ if (isset($_POST['log_in']))
 <head>
     <title>Login</title>
     <meta charset="utf-8">
+    <link href="assets/image/logo1c.jpeg" rel="icon">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/login.css"> 
+    <link rel="stylesheet" href="assets/css/login.css">
 </head>
 
 <body>
@@ -122,4 +109,5 @@ if (isset($_POST['log_in']))
         </div>
     </div>
 </body>
+
 </html>

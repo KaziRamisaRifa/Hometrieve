@@ -24,6 +24,9 @@
     <head>
         <title>Contact Us</title>
         <meta charset="utf-8">
+        
+        <link href="assets/image/logo1c.jpeg" rel="icon">
+    
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://apis.google.com/js/platform.js" async defer></script>

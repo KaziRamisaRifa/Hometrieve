@@ -6,11 +6,10 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <title>Hometrieve</title>
-    <meta content="Hometrieve  is a web-based platform that will provide a way for the user to search a house for rent and both house buyer and seller can deal under this system In Bangladesh." name="description">
-    <meta content="NSU, ACM, Student, Chapter, SC" name="keywords">
+    <meta content="We aim to achieve a convenient way for renting accommodation at best rates In Bangladesh." name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/img/acm-logo.png" rel="icon">
+    <link href="assets/image/logo1c.jpeg" rel="icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
