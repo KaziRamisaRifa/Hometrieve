@@ -1,0 +1,26 @@
+.parallax-window {
+    min-height: 100vh;
+    background: transparent;
+    
+  }
+
+.overlay{
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    background: black;
+    opacity: .3;
+    filter: blur(80px);
+    
+}
+.search-bar{
+    background: black;
+    border-radius: 8px;
+    opacity: 0.9;
+    color: white;
+    padding: 30px;
+}
+.search-bar .form-group{
+    margin: 20px;
+}
