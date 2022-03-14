@@ -13,26 +13,27 @@ if (isset($_SESSION["username"])) {
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>Hometrieve</title>
-  <meta content="Hometrieve  is a web-based platform that will provide a way for the user to search a house for rent and both house buyer and seller can deal under this system In Bangladesh." name="description">
-  <meta content="NSU, ACM, Student, Chapter, SC" name="keywords">
+  <meta content="We aim to achieve a convenient way for renting accommodation at best rates In Bangladesh." name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/acm-logo.png" rel="icon">
+  <link href="assets/image/logo1c.jpeg" rel="icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- CSS CDN Files -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
   <!-- Main CSS File -->
-  <link href="./css/style.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/searchbar.css">
 </head>
 
 <body>
@@ -117,6 +118,81 @@ if (isset($_SESSION["username"])) {
   </div>
   <!-- ======= End Carousel Section ======= -->
 
+  <div class="parallax-window d-flex align-items-center" data-parallax="scroll" data-image-src="assets/image/hero-bg.jpg">
+    <div class="overlay"></div>
+    <section class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="search-bar">
+
+        <form action="form-test.php" method="POST">
+          <div class="row g-3">
+
+            <div class="col-md-6">
+              <label for="location" class="form-label">Location</label>
+              <select name="location" class="form-select" id="location" aria-label="Select Location">
+                <option disabled selected>Select Location</option>
+                <option value="bashundhara">Bashundhara</option>
+                <option value="banani">Banani</option>
+                <option value="mirpur">Mirpur</option>
+                <option value="uttara">Uttara</option>
+                <option value="gulshan">Gulshan</option>
+                <option value="mohakhali">Mohakhali</option>
+                <option value="badda">Badda</option>
+                <option value="khilgaon">Khilgaon</option>
+                <option value="dhanmondi">Dhanmmondi</option>
+              </select>
+            </div>
+
+            <div class="col-md-3">
+              <label for="purpose" class="form-label">Purpose</label>
+              <select name="purpose" class="form-select" id="purpose" aria-label="Purpose">
+                <option disabled selected>What's your purpose?</option>
+                <option value="buy" selected>Buy</option>
+                <option value="rent">Rent</option>
+              </select>
+            </div>
+
+            <div class="col-md-3">
+              <label for="type" class="form-label">Type</label>
+              <select name="type" class="form-select" id="type" aria-label="Type">
+                <option disabled selected>Select type</option>
+                <option value="apartment">Apartment</option>
+                <option value="land">Land</option>
+              </select>
+            </div>
+
+            <div class="col-md-3">
+              <label for="area_size" class="form-label">Area size</label>
+              <input name="area_size" type="number" class="form-control" id="area_size" placeholder="Area size (sqft)">
+            </div>
+
+            <div class="col-md-3">
+              <label for="bed" class="form-label">Beds</label>
+              <input name="bed" type="number" class="form-control" id="bed" placeholder="Beds">
+            </div>
+
+            <div class="col-md-3">
+              <label for="bath" class="form-label">Baths</label>
+              <input name="bath" type="number" class="form-control" id="bath" placeholder="Baths">
+            </div>
+
+            <div class="col-md-3">
+              <label for="balcony" class="form-label">Balcony</label>
+              <input name="balcony" type="number" class="form-control" id="balcony" placeholder="Balcony">
+            </div>
+
+          </div>
+
+          <div class="row g-3 mt-3 d-flex justify-content-center align-items-center">
+            <div class="col-auto">
+              <button type="submit" class="btn btn-primary mb-3">FIND</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </section>
+  </div>
+
   <!-- ======= Rent, Buy, Sell Section ======= -->
   <section>
     <div class="blog" data-aos="fade-up" data-aos-delay=100>
@@ -188,6 +264,7 @@ if (isset($_SESSION["username"])) {
   <!-- ======= End Rent, Buy, Sell Section Section ======= -->
 
 
+
   <!-- ======= Footer ======= -->
   <footer id="footer">
     <div class="footer-top">
@@ -247,11 +324,12 @@ if (isset($_SESSION["username"])) {
   <!-- JS CDN Files -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/js/parallax.min.js"></script>
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
