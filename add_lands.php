@@ -13,7 +13,7 @@ if (isset($_POST['add_land']))
     $dbprice = strip_tags($_POST['price']);
     $dbdescription = strip_tags($_POST['description']);
 
-    $sql="INSERT INTO lands(user_id, owner_name, owner_email, owner_contact, location, address, area_size, price,	description)
+    $sql="INSERT INTO approval_land(user_id, owner_name, owner_email, owner_contact, location, address, area_size, price,	description)
     VALUES ('1', '$dbname','$dbemail','$dbcontact', '$dblocation','$dbaddress','$dbareasize','$dbprice','$dbdescription')";
 
     if (mysqli_query($conn, $sql)) 
@@ -29,7 +29,7 @@ if (isset($_POST['add_land']))
         $imageName = $_FILES['imageFile']['name'][$key];
         $result = move_uploaded_file($imageTmpName,$uploadFolder.$imageName);
         // save to database
-        $sql = "INSERT INTO land_image(land_id,image) value ('$last_id','$imageName')";
+        $sql = "INSERT INTO approval_land_image(land_id,image) value ('$last_id','$imageName')";
         mysqli_query($conn, $sql);
     }
     header("Location: user_profile.php?id=$last_id");

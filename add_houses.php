@@ -19,7 +19,7 @@ if (isset($_POST['add_house']))
     $dbbalcony = strip_tags($_POST['balcony']);
     $dbdescription = strip_tags($_POST['description']);
 
-    $sql="INSERT INTO houses(user_id, owner_name, owner_email, owner_contact, purpose, type, location, address, area_size, price, floor_no,	beds,	baths, balcony,	description)
+    $sql="INSERT INTO approval_house(user_id, owner_name, owner_email, owner_contact, purpose, type, location, address, area_size, price, floor_no,	beds,	baths, balcony,	description)
     VALUES ('1', '$dbname','$dbemail','$dbcontact','$dbpurpose', '$dbtype', '$dblocation','$dbaddress','$dbareasize','$dbprice','$dbfloor','$dbbeds','$dbbaths','$dbbalcony','$dbdescription')";
 
     if (mysqli_query($conn, $sql)) 
@@ -35,7 +35,7 @@ if (isset($_POST['add_house']))
         $imageName = $_FILES['imageFile']['name'][$key];
         $result = move_uploaded_file($imageTmpName,$uploadFolder.$imageName);
         // save to database
-        $sql = "INSERT INTO house_image(house_id,image) value ('$last_id','$imageName')";
+        $sql = "INSERT INTO approval_house_image(house_id,image) value ('$last_id','$imageName')";
         mysqli_query($conn, $sql);
     }
     header("Location: user_profile.php?id=$last_id");
