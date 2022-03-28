@@ -36,7 +36,7 @@
    <h1 class="text-center text-dark text-capitalize pt-5">Lands List</h1>
                 <hr class="w-25 pt-3">
    <div class="container">
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-lg-8 mx-auto">
             <ul class="list-group shadow">
             <?php
@@ -52,7 +52,16 @@
                                 <p><a href="favourite_list.php">View Details---></a></p>
                             </div>
                         </div>
-                        <img src="assets/image/signup_bg.jpg" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
+                        <?php
+                            $dbid = $row['id'];
+                            $sql = "SELECT image
+                            FROM land_image
+                            WHERE land_id='$dbid'";
+                            $result1 = mysqli_query($conn,$sql);
+                            $rows_img = mysqli_fetch_array($result1);
+                            $img_src = $rows_img['image'];       
+                        ?>
+                        <img src="assets/uploads/<?php echo $rows_img['image']; ?>" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
                     </div> 
                 </li>
             <?php }?> 
