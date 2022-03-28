@@ -4,6 +4,30 @@
 
     $sql = "SELECT * FROM houses";
     $result = mysqli_query($conn, $sql);
+
+
+    if (isset($_POST['favourite'])) 
+    {
+        $dbid = strip_tags($_POST['hid']);
+        $sql = "INSERT INTO favorites(house_id,user_id)
+        SELECT id, user_id FROM house
+        WHERE id= '$dbid'";
+        mysqli_query($conn, $sql);
+
+        
+
+        header("Location: house_approval_list.php");
+    }
+
+    if (isset($_POST['delete'])) 
+    {
+        $dbid = strip_tags($_POST['hid']);
+
+        $sql = "DELETE FROM approval_land WHERE id= '$dbid'";
+        mysqli_query($conn, $sql);
+        header("Location: house_approval_list.php");
+    }
+
 ?>
 
 
@@ -42,7 +66,7 @@
                 
 
    <div class="container">
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-lg-8 mx-auto">
             <ul class="list-group shadow">
             <?php
@@ -57,8 +81,30 @@
                                 <h6><strong><i class="fa fa-money" aria-hidden="true"></i> <?php echo $row['price']; ?> BDT</strong></h6>
                                 <p><a href="favourite_list.php">View Details---></a></p>
                             </div>
+                            <form method="POST">
+                                <input name="hid" type="hidden" value="<?php echo $row['id']; ?>">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button type="submit" name="favourite" class="btn btn-success btn-block">  Add to favourite </button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="submit" name="compare" class="btn btn-danger btn-block"> Add to compare  </button>
+                                    </div>
+                                </div>
+                             </form>
                         </div>
-                        <img src="assets/image/signup_bg.jpg" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
+                        
+                        <?php
+                            $dbid = $row['id'];
+                            $sql = "SELECT image
+                            FROM approval_house_image
+                            WHERE house_id='$dbid'";
+                            $result1 = mysqli_query($conn,$sql);
+                            $rows_img = mysqli_fetch_array($result1);
+                            $img_src = $rows_img['image'];       
+                        ?>
+                        
+                            <img src="assets/uploads/<?php echo $rows_img['image']; ?>" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2"> 
                     </div> 
                 </li> 
             <?php }?>
