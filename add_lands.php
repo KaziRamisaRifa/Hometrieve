@@ -1,5 +1,9 @@
 <?php
-
+  session_start();
+  if($_SESSION['logged_in']==false){
+    header('Location:login.php');
+  }
+  $user_id  = $_SESSION['userid'];
   include 'connection.php';
 
 if (isset($_POST['add_land'])) 
@@ -14,7 +18,7 @@ if (isset($_POST['add_land']))
     $dbdescription = strip_tags($_POST['description']);
 
     $sql="INSERT INTO approval_land(user_id, owner_name, owner_email, owner_contact, location, address, area_size, price,	description)
-    VALUES ('1', '$dbname','$dbemail','$dbcontact', '$dblocation','$dbaddress','$dbareasize','$dbprice','$dbdescription')";
+    VALUES ('$user_id', '$dbname','$dbemail','$dbcontact', '$dblocation','$dbaddress','$dbareasize','$dbprice','$dbdescription')";
 
     if (mysqli_query($conn, $sql)) 
     {

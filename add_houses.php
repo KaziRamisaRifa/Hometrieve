@@ -1,6 +1,10 @@
 <?php
-
-  include 'connection.php';
+session_start();
+if($_SESSION['logged_in']==false){
+  header('Location:login.php');
+}
+$user_id  = $_SESSION['userid'];
+include 'connection.php';
 
 if (isset($_POST['add_house'])) 
 {
@@ -20,7 +24,7 @@ if (isset($_POST['add_house']))
     $dbdescription = strip_tags($_POST['description']);
 
     $sql="INSERT INTO approval_house(user_id, owner_name, owner_email, owner_contact, purpose, type, location, address, area_size, price, floor_no,	beds,	baths, balcony,	description)
-    VALUES ('1', '$dbname','$dbemail','$dbcontact','$dbpurpose', '$dbtype', '$dblocation','$dbaddress','$dbareasize','$dbprice','$dbfloor','$dbbeds','$dbbaths','$dbbalcony','$dbdescription')";
+    VALUES ('$user_id', '$dbname','$dbemail','$dbcontact','$dbpurpose', '$dbtype', '$dblocation','$dbaddress','$dbareasize','$dbprice','$dbfloor','$dbbeds','$dbbaths','$dbbalcony','$dbdescription')";
 
     if (mysqli_query($conn, $sql)) 
     {
