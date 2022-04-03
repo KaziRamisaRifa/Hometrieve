@@ -1,5 +1,14 @@
 <?php
+include 'connection.php';
 session_start();
+
+if(!empty($_SESSION['logged_in'])&&$_SESSION['logged_in']==true){
+  $email = $_SESSION['user_email_address'];
+    $sql = "SELECT * FROM user WHERE email='$email'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $_SESSION['userid'] = $row['id'];
+}
 
 // if($_SESSION['logged_in']==FALSE){
 //   session_destroy();
