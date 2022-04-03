@@ -42,7 +42,7 @@ $user_phone=$row['contact'];
   <div class="container">
 
     <h2><strong>Welcome <?php echo $username; ?></strong></h2>
-    <a class="button1"  href="" role="button">Log Out</a>
+    <a class="button1"  href="logout.php" role="button">Log Out</a>
 
 
     <div class="row ">
