@@ -28,7 +28,8 @@ if (isset($_POST['log_in'])) {
                     $dbid = $row["id"];
                     session_start();
                     $_SESSION['userid'] = $dbid;
-                    header("Location: user_profile.php?id=$dbid");
+                    $_SESSION['logged_in'] = true;
+                    header("Location: user_profile.php");
                 } else {
                     // Display the alert box
                     echo "<script>
@@ -53,7 +54,10 @@ if (isset($_POST['log_in'])) {
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_assoc($result);
                 $dbid = $row["id"];
-                header("Location: user_profile.php?id=$dbid");
+                session_start();
+                $_SESSION['userid'] = $dbid;
+                $_SESSION['logged_in'] = true;
+                header("Location: user_profile.php");
             } else {
                 // Display the alert box
                 echo "<script>
