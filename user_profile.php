@@ -135,7 +135,7 @@ $user_phone=$row['contact'];
       <div class="col-md-5 col-lg-5 col-sm-12">
         <div class="row pt-5">
 
-          <button class="button2" role="button" onclick="window.location =''"><i class="fa fa-search"></i> Search a house for rent now!</button>
+          <button class="button2" role="button" onclick="window.location ='view_houses.php'"><i class="fa fa-search"></i> Search a house for rent now!</button>
         </div>
         <div class="row pt-5">
           <button class="button2" onclick="window.location ='add_houses.php'" role="button"><i class="fa fa-home"> Add House + </i> </button>
