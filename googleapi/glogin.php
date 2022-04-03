@@ -61,14 +61,14 @@ if (!isset($_SESSION['access_token'])) {
 } else {
     // header('Location:passwordSetup.php');
     $email = $_SESSION['user_email_address'];
-        $sql = "SELECT * FROM user WHERE email='$email'";
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($result);
-        if(mysqli_num_rows($result)==0){
-            header('Location:passwordSetup.php');
-        }else{
-            $_SESSION['userid'] = $row['id'];
-            $_SESSION['logged_in'] = true;
-            header('Location:../index.php');
+    $sql = "SELECT * FROM user WHERE email='$email'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    if(mysqli_num_rows($result)==0){
+        header('Location:passwordSetup.php');
+    }else{
+        $_SESSION['userid'] = $row['id'];
+        $_SESSION['logged_in'] = true;
+        header('Location:../index.php');
         }
 }
