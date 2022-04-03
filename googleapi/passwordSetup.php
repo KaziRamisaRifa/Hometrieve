@@ -1,10 +1,24 @@
 <?php
+include '../connection.php';
 session_start();
 if(isset($_POST['next_btn'])){
     if($_POST['password'] == $_POST['conf_password']){
         $_SESSION['password'] = $_POST['password'];
-        $_SESSION['logged_in'] = TRUE;
-        header('Location:../index.php');
+        $firstName=$_SESSION['user_first_name'];
+        $lastName=$_SESSION['user_last_name'];
+        $email = $_SESSION['user_email_address'];
+        $password=$_SESSION['password'];
+        $sql = "INSERT INTO user(id, first_name, last_name, email, contact, password) VALUES ('','$firstName','$lastName','$email','1010','$password')";
+        $result = mysqli_query($conn, $sql);
+        if($result){
+            $_SESSION['logged_in'] = true;
+            header('Location:../index.php');
+        }
+        else{
+            
+            echo "query not successfull";
+        }
+        
     }
     else{
         $_SESSION['logged_in'] = FALSE;

@@ -2,6 +2,7 @@
 session_start();
 $_SESSION['logged_in'] = FALSE;
 require_once('config.php');
+include '../connection.php';
 
 $login_button = '';
 
@@ -58,7 +59,16 @@ if (!isset($_SESSION['access_token'])) {
 
     $login_button = '<a href="' . $google_client->createAuthUrl() . '">Login With Google</a>';
 } else {
-    header('Location:passwordSetup.php');
-    
+    // header('Location:passwordSetup.php');
+    $email = $_SESSION['user_email_address'];
+        $sql = "SELECT * FROM user WHERE email='$email'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        if(mysqli_num_rows($result)==0){
+            header('Location:passwordSetup.php');
+        }else{
+            $_SESSION['userid'] = $row['id'];
+            $_SESSION['logged_in'] = true;
+            header('Location:../index.php');
+        }
 }
-?>
