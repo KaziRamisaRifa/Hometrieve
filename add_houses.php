@@ -42,7 +42,7 @@ if (isset($_POST['add_house']))
         $sql = "INSERT INTO approval_house_image(house_id,image) value ('$last_id','$imageName')";
         mysqli_query($conn, $sql);
     }
-    header("Location: user_profile.php?id=$last_id");
+    header("Location: user_profile.php?");
     
     
 }
