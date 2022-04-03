@@ -1,8 +1,17 @@
 <?php
 session_start();
-if (isset($_SESSION["username"])) {
-  $username = $_SESSION["username"];
+// if($_SESSION['logged_in']==FALSE){
+//   session_destroy();
+// }
+if (!empty($_SESSION['user_first_name'])) {
+  $username = $_SESSION['user_first_name'];
 }
+
+// if (isset($_SESSION['user_first_name'])) {
+//   $username = $_SESSION['user_first_name'];
+//   echo $username;
+//}
+
 ?>
 
 <!DOCTYPE html>
@@ -66,10 +75,17 @@ if (isset($_SESSION["username"])) {
           <li><a class="nav-link scrollto" href="#">Register</a></li>
 
           <?php
-          $logged_in = FALSE;
 
-          if (!isset($username)) echo '<li><a class="nav-link scrollto" href="login.php">Login</a></li>';
-          else echo '<li><a href="logout.php">' . $username . '</a></li>';
+          if (empty($_SESSION['logged_in'])) echo '<li><a class="nav-link scrollto" href="login.php">Login</a></li>';
+          else {
+            echo '<li class="dropdown"><span>Profile</span><i class="bi bi-chevron-down"></i>
+            <ul style="text-align:center;">
+                <li><span>Welcome</span></li>
+                <li><span>' . $username . '</span></li>
+                <li><a href="logout.php">Logout</a></li>
+              </ul>
+          </li>';
+          }
           ?>
 
         </ul>

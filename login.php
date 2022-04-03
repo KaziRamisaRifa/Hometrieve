@@ -1,6 +1,7 @@
 <?php
 
 include 'connection.php';
+require_once('googleapi/config.php');
 
 if (isset($_POST['log_in'])) {
     $dbemailcontact = strip_tags($_POST['emailcontact']);
@@ -100,7 +101,7 @@ if (isset($_POST['log_in'])) {
                             <button name="log_in" class="btn btn-primary w-50"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
                             <hr>
                             <button type="submit" class="btn btn-danger" onclick="window.location = 'register.php';"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</button>
-                            <button type="button" onclick="window.location = '<?php echo $loginURL ?>';" class="btn btn-danger"><i class="fa fa-google"></i> Login With Google</button>
+                            <button type="button" onclick="window.location = '<?php echo $loginUrl; ?>'" class="btn btn-danger"><i class="fa fa-google"></i> Login With Google</button>
                         </div>
                     </form>
                 </div>

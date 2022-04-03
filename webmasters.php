@@ -126,7 +126,7 @@
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="500">
                         <div class="member">
                             <div class="member-img">
-                                <img src="assets/image/team/Khalid Bin Shafiq.jpg" class="img-fluid" alt="">
+                                <img src="assets/image/team/Sabiha Hossain.jpg" class="img-fluid" alt="">
                                 <div class="social">
                                     <a href="#" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
                                     <a href="#" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
@@ -142,7 +142,7 @@
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
                         <div class="member">
                             <div class="member-img">
-                                <img src="assets/image/team/Khalid Bin Shafiq.jpg" class="img-fluid" alt="">
+                                <img src="assets/image/team/" class="img-fluid" alt="">
                                 <div class="social">
                                     <a href="#" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
                                     <a href="#" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
