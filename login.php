@@ -26,6 +26,8 @@ if (isset($_POST['log_in'])) {
                     $result = mysqli_query($conn, $sql);
                     $row = mysqli_fetch_assoc($result);
                     $dbid = $row["id"];
+                    session_start();
+                    $_SESSION['userid'] = $dbid;
                     header("Location: user_profile.php?id=$dbid");
                 } else {
                     // Display the alert box

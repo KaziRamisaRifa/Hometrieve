@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 // if($_SESSION['logged_in']==FALSE){
 //   session_destroy();
 // }
@@ -82,6 +83,7 @@ if (!empty($_SESSION['user_first_name'])) {
             <ul style="text-align:center;">
                 <li><span>Welcome</span></li>
                 <li><span>' . $username . '</span></li>
+                <li><a href="user_profile.php">Profile</a></li>
                 <li><a href="logout.php">Logout</a></li>
               </ul>
           </li>';
