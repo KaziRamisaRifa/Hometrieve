@@ -7,8 +7,9 @@ if(isset($_POST['next_btn'])){
         $firstName=$_SESSION['user_first_name'];
         $lastName=$_SESSION['user_last_name'];
         $email = $_SESSION['user_email_address'];
+        $contact = $_POST['contact'];
         $password=$_SESSION['password'];
-        $sql = "INSERT INTO user(id, first_name, last_name, email, contact, password) VALUES ('','$firstName','$lastName','$email','1010','$password')";
+        $sql = "INSERT INTO user(id, first_name, last_name, email, contact, password) VALUES ('','$firstName','$lastName','$email','$contact','$password')";
         $result = mysqli_query($conn, $sql);
         if($result){
             $_SESSION['logged_in'] = true;
@@ -55,7 +56,14 @@ if(isset($_POST['next_btn'])){
             <div class="row d-flex justify-content-center align-items-center" style="height: 100vh;">
                 <div class="col-md-4 col-lg-3 setup-card">
 
-                    <h5 class="mb-5">Take a moment to set up your password!</h5>
+                    <h5 class="mb-5">Take a moment to set up your account!</h5>
+
+                    <div class="mb-3">
+                        <label class="form-label">Contact no.</label>
+                        <div class="input-group mb-3">
+                            <input class="form-control password" id="contact" class="block mt-1 w-full" type="text" name="contact" required />
+                        </div>
+                    </div>
 
                     <div class="mb-3">
                         <label class="form-label">Password</label>
