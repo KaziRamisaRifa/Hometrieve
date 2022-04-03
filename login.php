@@ -102,7 +102,7 @@ if (isset($_POST['log_in'])) {
                         <div class="col-md-12 text-center">
                             <button name="log_in" class="btn btn-primary w-50"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
                             <hr>
-                            <button type="submit" class="btn btn-danger" onclick="window.location = 'register.php';"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</button>
+                            <button type="submit" class="btn btn-danger" onclick="window.location = 'signup.php';"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</button>
                             <button type="button" onclick="window.location = '<?php echo $loginUrl; ?>'" class="btn btn-danger"><i class="fa fa-google"></i> Login With Google</button>
                         </div>
                     </form>
