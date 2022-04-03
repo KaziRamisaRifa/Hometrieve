@@ -1,5 +1,7 @@
 <?php
   // Create database connection
+  session_start();
+$userid = $_SESSION['userid'];
   include 'connection.php';
 
     $sql = "SELECT * FROM houses";
@@ -9,23 +11,26 @@
     if (isset($_POST['favourite'])) 
     {
         $dbid = strip_tags($_POST['hid']);
-        $sql = "INSERT INTO favorites(house_id,user_id)
-        SELECT id, user_id FROM house
-        WHERE id= '$dbid'";
+        $sql = "INSERT INTO favorites(user_id,house_id)
+        VALUES ('$userid','$dbid')";
         mysqli_query($conn, $sql);
-
-        
-
-        header("Location: house_approval_list.php");
+        header("Location: view_houses.php");
+    }
+    
+    if (isset($_POST['unfavourite'])) 
+    {
+        $dbid = strip_tags($_POST['hid']);
+        $sql = "DELETE FROM favorites WHERE house_id= '$dbid'";
+        mysqli_query($conn, $sql);
+        header("Location: view_houses.php");
     }
 
     if (isset($_POST['delete'])) 
     {
         $dbid = strip_tags($_POST['hid']);
-
         $sql = "DELETE FROM approval_land WHERE id= '$dbid'";
         mysqli_query($conn, $sql);
-        header("Location: house_approval_list.php");
+        header("Location: view_houses.php");
     }
 
 ?>
@@ -84,9 +89,24 @@
                             <form method="POST">
                                 <input name="hid" type="hidden" value="<?php echo $row['id']; ?>">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <button type="submit" name="favourite" class="btn btn-success btn-block">  Add to favourite </button>
-                                    </div>
+                                <?php 
+                                    $h_id=$row['id'];
+                                    $sql = "SELECT house_id FROM favorites where user_id='$userid' AND house_id='$h_id'";
+                                    $result1 = mysqli_query($conn, $sql);
+                                    $row1 = mysqli_fetch_array($result1);
+                                    if ($row1==NULL){  
+                                    ?>
+                                            <div class="col-md-6">
+                                                <button type="submit" name="favourite" class="btn btn-success btn-block">  Add to favourite </button>
+                                               
+                                            </div>
+                                    <?php } else{  
+                                        ?>                                     
+                                        <div class="col-md-6">
+                                            <button type="submit" name="unfavourite" class="btn btn-success btn-block">  Favourite </button>
+                                        </div>
+
+                                    <?php }?>                            
                                     <div class="col-md-6">
                                         <button type="submit" name="compare" class="btn btn-danger btn-block"> Add to compare  </button>
                                     </div>
@@ -97,7 +117,7 @@
                         <?php
                             $dbid = $row['id'];
                             $sql = "SELECT image
-                            FROM approval_house_image
+                            FROM house_image
                             WHERE house_id='$dbid'";
                             $result1 = mysqli_query($conn,$sql);
                             $rows_img = mysqli_fetch_array($result1);
