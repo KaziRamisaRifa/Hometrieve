@@ -24,11 +24,36 @@ $user_phone=$row['contact'];
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/user_profile.css">
 
   <title>User | Profile</title>
   <style>
+    .notification {
+  background-color: #555;
+  color: white;
+  text-decoration: none;
+  padding: 15px 26px;
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+.notification:hover {
+  background: red;
+}
+
+.notification .badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+}
     body {
+      
       background-image: url('assets/image/up_bg.jpg');
       background-repeat: no-repeat;
       background-attachment: fixed;
@@ -38,10 +63,59 @@ $user_phone=$row['contact'];
 </head>
 
 <body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a href="index.php" class="logo"><img src="assets/image/logo1c.jpeg" alt="Hometrieve"></a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li class="dropdown"><a class="nav-link scrollto active" href="#team"><span>Home</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="">Rent Home</a></li>
+              <li><a href="">Buy Houses</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#team"><span>Lands</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="">Buy Land</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#team"><span>Add property</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="add_houses.php">Add Houses</a></li>
+              <li><a href="add_lands.php">Add Lands</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="#">Contact</a></li>
+          <li><a class="nav-link scrollto" href="#">Register</a></li>
+
+          <?php
+
+          if (empty($_SESSION['logged_in'])) echo '<li><a class="nav-link scrollto" href="login.php">Login</a></li>';
+          else {
+            echo '<li class="dropdown"><span><strong>Profile</strong></span><i class="bi bi-chevron-down"></i>
+            <ul style="text-align:center;">
+                <li><span>Welcome</span></li>
+                <li><span>' . $username . '</span></li>
+                <li><a href="user_profile.php">Profile</a></li>
+                <li><a href="logout.php">Logout</a></li>
+              </ul>
+          </li>';
+          }
+          ?>
+          
+
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
   <br><br><br><br>
   <div class="container">
 
-    <h2><strong>Welcome <?php echo $username; ?></strong></h2>
+    <h2><strong>Welcome <?php echo $username; ?>!</strong></h2>
     <a class="button1"  href="logout.php" role="button">Log Out</a>
 
 
@@ -130,6 +204,8 @@ $user_phone=$row['contact'];
       </div>
       <div class="col-md-2">
         <br>
+        <a href="view_inbox.php" class="notification"><span>Inbox</span><span class="badge"></span></a>
+        <br><br>
         <a class="button1" href="donor_login.php" role="button">Edit Profile</a>
       </div>
       <div class="col-md-5 col-lg-5 col-sm-12">

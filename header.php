@@ -62,6 +62,7 @@
                     if (!isset($username)) echo '<li><a class="nav-link scrollto" href="login.php">Login</a></li>';
                     else echo '<li><a href="logout.php">' . $username . '</a></li>';
                     ?>
+                    
 
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>

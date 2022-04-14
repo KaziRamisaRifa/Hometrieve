@@ -1,16 +1,18 @@
 <?php
 include 'connection.php';
 
-session_start();
-if($_SESSION['logged_in']==false){
-  header('Location:login.php');
-}
-$userid  = $_SESSION['userid'];
-$h_id  = $_SESSION['houseid'];
+    if ($_GET['id']==NULL)
+    {
+        echo "<script>
+        alert('Please Login!');
+        window.location.href='login.php';
+        </script>";
+    }
 
+    $dbid =  $_GET['id'];
     $sql = "SELECT *
-    FROM houses
-    WHERE id='$h_id'";
+    FROM approval_land
+    WHERE id='$dbid'";
     $result = mysqli_query($conn,$sql);
     $row = mysqli_fetch_array($result)
 
@@ -22,7 +24,7 @@ $h_id  = $_SESSION['houseid'];
 <html lang="en" dir="ltr">
   <head>
 
-    <title>View Details</title>
+    <title>Land Approval List</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -38,7 +40,7 @@ $h_id  = $_SESSION['houseid'];
             background-size: cover;
         }
         img {
-                height: 220px;
+                 height: 220px;
                  width: 250px
             }
     </style>
@@ -48,7 +50,7 @@ $h_id  = $_SESSION['houseid'];
 
   
 <body>
-   <h1 class="text-center text-dark text-capitalize pt-5">House View</h1>
+   <h1 class="text-center text-dark text-capitalize pt-5">Land View</h1>
                 <hr class="w-25 pt-3">
                 
 
@@ -63,16 +65,10 @@ $h_id  = $_SESSION['houseid'];
                             <h6><i class="fa fa-user"></i> Owner Name: <?php echo $row['owner_name']; ?></h6>
                             <h6><i class="fa fa-envelope"></i> Owner Email: <?php echo $row['owner_email']; ?></h6>
                             <h6><i class="fa fa-phone"></i> Owner Contact No: <?php echo $row['owner_contact']; ?></h6>
-                            <h6><i class="fa fa-check-square-o"></i> Purpose: <?php echo $row['purpose']; ?></h6>
-                            <h6><i class="fa fa-home"></i> Type: <?php echo $row['type']; ?></h6>
                             <h6><i class="fa fa-map-marker"></i> Location: <?php echo $row['location']; ?></h6>
                             <h6><i class="fa fa-location-arrow"></i> Address: <?php echo $row['address']; ?></h6>
                             <h6><i class="fa fa-th-large"></i> Area Size: <?php echo $row['area_size']; ?> sqft</h6>
                             <h6><i class="fa fa-money"></i> Price: <?php echo $row['price']; ?> BDT</h6>
-                            <h6><i class="fa fa-arrow-up"></i> Floor No: <?php echo $row['floor_no']; ?></h6>
-                            <h6><i class="fa fa-bed"></i> Beds: <?php echo $row['beds']; ?></h6>
-                            <h6><i class="fa fa-bath"></i> Baths: <?php echo $row['baths']; ?></h6>
-                            <h6><i class="fa fa-trello"></i> Balcony: <?php echo $row['balcony']; ?></h6>
                             <h6><i class="fa fa-pencil"></i> Description: <?php echo $row['description']; ?></h6>
                             
 
@@ -80,8 +76,8 @@ $h_id  = $_SESSION['houseid'];
                         <?php
                         
                             $sql = "SELECT image
-                            FROM house_image
-                            WHERE house_id='$h_id'";
+                            FROM land_image
+                            WHERE land_id='$dbid'";
                             $result1 = mysqli_query($conn,$sql);
                             while($rows_img = mysqli_fetch_array($result1))
                             {                               
@@ -93,9 +89,14 @@ $h_id  = $_SESSION['houseid'];
                         <?php
                             }
                         ?>
+                        
+                            
                             <div class="row mt-5">
-                                <div class="col-md-12">
-                                    <button type="submit" onclick="window.location = 'contact_owner.php';" class="btn btn-info btn-block"> Contact  </button>
+                                <div class="col-md-6">
+                                    <button type="submit" name="approve" class="btn btn-success btn-block"> Approve  </button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="submit" name="delete" class="btn btn-danger btn-block"> Delete  </button>
                                 </div>
                             </div>
                         </div>

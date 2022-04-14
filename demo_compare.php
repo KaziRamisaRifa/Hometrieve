@@ -3,21 +3,16 @@ include 'connection.php';
 session_start();
 $userid = $_SESSION['userid'];
 
-$sql = "SELECT * FROM favorites WHERE user_id='$userid'";
+//$sql = "SELECT * FROM compare_list WHERE user_id='$userid'";
+//$result = mysqli_query($conn, $sql);
+
+//$sql = "SELECT * FROM compare_list WHERE user_id='$userid' ORDER BY user_id DESC LIMIT 2 ";
+$sql = "SELECT * FROM compare_list WHERE user_id='$userid'";
 $result = mysqli_query($conn, $sql);
 
-if (isset($_POST['unfavourite'])) 
-    {
-        $dbid = strip_tags($_POST['hid']);
-        $sql = "DELETE FROM favorites WHERE house_id= '$dbid'";
-        mysqli_query($conn, $sql);
-        header("Location: favourite_list.php");
-    }
     
 
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -48,17 +43,16 @@ if (isset($_POST['unfavourite']))
 
   
 <body>
-   <h1 class="text-center text-dark text-capitalize pt-5">Favourite List</h1>
+   <h1 class="text-center text-dark text-capitalize pt-5">Houses List</h1>
                 <hr class="w-25 pt-3">
                 
 
    <div class="container">
     <div class="row mb-5">
-        <div class="col-lg-8 mx-auto">
+        <div class="col-lg-4 col-lg-4 mx-auto">
             <ul class="list-group shadow">
             <?php
-            if(mysqli_num_rows($result)!= 0){
-            while($row = mysqli_fetch_assoc($result)){
+               while($row = mysqli_fetch_assoc($result)){
                 $house_id = $row['house_id'];
                 $land_id = $row['land_id'];
                 $house_sql = "SELECT * FROM houses WHERE id='$house_id'";
@@ -66,11 +60,12 @@ if (isset($_POST['unfavourite']))
             
                 $house_result = mysqli_query($conn, $house_sql);
                 $land_result = mysqli_query($conn, $land_sql);
+                while ($house = mysqli_fetch_assoc($house_result)) {
             
                 
             
-            
-                while ($house = mysqli_fetch_assoc($house_result)) {
+               
+                    
             ?>
                 <li class="list-group-item">
                     <div class="media align-items-lg-center flex-column flex-lg-row p-3">
@@ -84,12 +79,8 @@ if (isset($_POST['unfavourite']))
                             <form method="POST">
                                 <input name="hid" type="hidden" value="<?php echo $house['id']; ?>">
                                 <div class="row">
-                                                                     
-                                        <div class="col-md-6">
-                                            <button type="submit" name="unfavourite" class="btn btn-success btn-block">  Remove favourite </button>
-                                        </div>             
                                     <div class="col-md-6">
-                                        <button type="submit" name="compare" class="btn btn-danger btn-block"> Add to compare  </button>
+                                        <button type="submit" name="compare" class="btn btn-danger btn-block"> Remove from compare  </button>
                                     </div>
                                 </div>
                              </form>
@@ -108,20 +99,51 @@ if (isset($_POST['unfavourite']))
                             <img src="assets/uploads/<?php echo $rows_img['image']; ?>" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2"> 
                     </div> 
                 </li> 
-            <?php }}
-
-                }
-            else{?>
-
-
+            <?php } }?>
             </ul>
-            <h1 class="text-center text-dark text-capitalize pt-5">Empty!</h1>
-            <?php } ?>
+        </div>
+        <div class="col-lg-4 col-md-4 mx-auto">
+        <ul class="list-group shadow">
+            <?php
+                while ($house = mysqli_fetch_assoc($house_result)) {
+            ?>
+                <li class="list-group-item">
+                    <div class="card">
+                        
+                            <h5><strong><?php echo $house['location']; ?> | <?php echo $house['area_size']; ?> sqft | <?php echo $house['purpose']; ?></strong></h5>
+                            <p class="text-muted"><i class="fa fa-bed">  </i> <?php echo $house['beds']; ?> Beds | <i class="fa fa-bath"></i> <?php echo $house['baths']; ?> Baths | <i class="fa fa-trello">  </i> <?php echo $house['balcony']; ?> Balcony | <i class="fa fa-arrow-up"></i> <?php echo $house['floor_no']; ?> Floor No.</p>
+                            <div class="d-flex align-items-center justify-content-between mt-1">
+                                <h6><strong><i class="fa fa-money" aria-hidden="true"></i> <?php echo $house['price']; ?> BDT</strong></h6>
+                                <p><a href="favourite_list.php">View Details---></a></p>
+                            </div>
+                            <form method="POST">
+                                <input name="hid" type="hidden" value="<?php echo $house['id']; ?>">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button type="submit" name="compare" class="btn btn-danger btn-block"> Remove from compare  </button>
+                                    </div>
+                                </div>
+                             </form>
+                        
+                        
+                        <?php
+                            $dbid = $house['id'];
+                            $sql = "SELECT image
+                            FROM house_image
+                            WHERE house_id='$dbid'";
+                            $result1 = mysqli_query($conn,$sql);
+                            $rows_img = mysqli_fetch_array($result1);
+                            $img_src = $rows_img['image'];       
+                        ?>
+                        
+                            <img src="assets/uploads/<?php echo $rows_img['image']; ?>" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2"> 
+                    </div> 
+                </li> 
+            <?php }?>
+            </ul>
         </div>
     </div>
 </div>
-
-
 
 </body>
 </html>

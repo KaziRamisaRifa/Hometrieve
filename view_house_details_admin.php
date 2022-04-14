@@ -1,16 +1,18 @@
 <?php
 include 'connection.php';
 
-session_start();
-if($_SESSION['logged_in']==false){
-  header('Location:login.php');
-}
-$userid  = $_SESSION['userid'];
-$h_id  = $_SESSION['houseid'];
+    if ($_GET['id']==NULL)
+    {
+        echo "<script>
+        alert('Please Login!');
+        window.location.href='login.php';
+        </script>";
+    }
 
+    $dbid =  $_GET['id'];
     $sql = "SELECT *
-    FROM houses
-    WHERE id='$h_id'";
+    FROM approval_house
+    WHERE id='$dbid'";
     $result = mysqli_query($conn,$sql);
     $row = mysqli_fetch_array($result)
 
@@ -22,7 +24,7 @@ $h_id  = $_SESSION['houseid'];
 <html lang="en" dir="ltr">
   <head>
 
-    <title>View Details</title>
+    <title>House Approval List</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -80,8 +82,8 @@ $h_id  = $_SESSION['houseid'];
                         <?php
                         
                             $sql = "SELECT image
-                            FROM house_image
-                            WHERE house_id='$h_id'";
+                            FROM approval_house_image
+                            WHERE house_id='$dbid'";
                             $result1 = mysqli_query($conn,$sql);
                             while($rows_img = mysqli_fetch_array($result1))
                             {                               
@@ -93,9 +95,14 @@ $h_id  = $_SESSION['houseid'];
                         <?php
                             }
                         ?>
+                        
+                            
                             <div class="row mt-5">
-                                <div class="col-md-12">
-                                    <button type="submit" onclick="window.location = 'contact_owner.php';" class="btn btn-info btn-block"> Contact  </button>
+                                <div class="col-md-6">
+                                    <button type="submit" name="approve" class="btn btn-success btn-block"> Approve  </button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="submit" name="delete" class="btn btn-danger btn-block"> Delete  </button>
                                 </div>
                             </div>
                         </div>

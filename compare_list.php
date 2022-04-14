@@ -6,13 +6,11 @@ $userid = $_SESSION['userid'];
 //$sql = "SELECT * FROM compare_list WHERE user_id='$userid'";
 //$result = mysqli_query($conn, $sql);
 
-$sql = "SELECT * FROM compare_list WHERE user_id='$userid' ORDER BY user_id DESC LIMIT 2 ";
+//$sql = "SELECT * FROM compare_list WHERE user_id='$userid' ORDER BY user_id DESC LIMIT 2 ";
+$sql = "SELECT * FROM compare_list WHERE user_id='$userid'";
 $result = mysqli_query($conn, $sql);
 
-while($row = mysqli_fetch_assoc($result)){
-
-    echo $row['house_id']." ".$row['land_id'];
-}
+    
 
 ?>
 <!DOCTYPE html>
@@ -45,55 +43,69 @@ while($row = mysqli_fetch_assoc($result)){
 
   
 <body>
-   <h1 class="text-center text-dark text-capitalize pt-5">Houses List</h1>
+   <h1 class="text-center text-dark text-capitalize pt-5">Compare List</h1>
                 <hr class="w-25 pt-3">
                 
 
    <div class="container">
     <div class="row mb-5">
-        <div class="col-lg-8 mx-auto">
-            <ul class="list-group shadow">
-            <?php
-                while ($row = mysqli_fetch_array($result)) {
+
+    <?php
+               while($row = mysqli_fetch_assoc($result)){
+                $house_id = $row['house_id'];
+                $land_id = $row['land_id'];
+                $house_sql = "SELECT * FROM houses WHERE id='$house_id'";
+                $land_sql = "SELECT * FROM lands WHERE id='$land_id'";
+            
+                $house_result = mysqli_query($conn, $house_sql);
+                $land_result = mysqli_query($conn, $land_sql);
+                while ($house = mysqli_fetch_assoc($house_result)) {
+            
+                
+            
+               
+                    
             ?>
-                <li class="list-group-item">
-                    <div class="media align-items-lg-center flex-column flex-lg-row p-3">
-                        <div class="media-body order-2 order-lg-1">
-                            <h5><strong><?php echo $row['location']; ?> | <?php echo $row['area_size']; ?> sqft | <?php echo $row['purpose']; ?></strong></h5>
-                            <p class="text-muted"><i class="fa fa-bed">  </i> <?php echo $row['beds']; ?> Beds | <i class="fa fa-bath"></i> <?php echo $row['baths']; ?> Baths | <i class="fa fa-trello">  </i> <?php echo $row['balcony']; ?> Balcony | <i class="fa fa-arrow-up"></i> <?php echo $row['floor_no']; ?> Floor No.</p>
-                            <div class="d-flex align-items-center justify-content-between mt-1">
-                                <h6><strong><i class="fa fa-money" aria-hidden="true"></i> <?php echo $row['price']; ?> BDT</strong></h6>
-                                <p><a href="favourite_list.php">View Details---></a></p>
-                            </div>
-                            <form method="POST">
-                                <input name="hid" type="hidden" value="<?php echo $row['id']; ?>">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <button type="submit" name="favourite" class="btn btn-success btn-block">  Add to favourite </button>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button type="submit" name="compare" class="btn btn-danger btn-block"> Add to compare  </button>
-                                    </div>
-                                </div>
-                             </form>
-                        </div>
-                        
-                        <?php
-                            $dbid = $row['id'];
+
+
+        <div class="col-lg-6 col-lg-6 mx-auto">
+        <div class="card-group">
+            <div class="card bg-light">
+                <div class="card-body text-center">
+                
+                <h6><i class="fa fa-user"></i> Owner Name: <?php echo $house['owner_name']; ?></h6>
+                            <h6><i class="fa fa-envelope"></i> Owner Email: <?php echo $house['owner_email']; ?></h6>
+                            <h6><i class="fa fa-phone"></i> Owner Contact No: <?php echo $house['owner_contact']; ?></h6>
+                            <h6><i class="fa fa-check-square-o"></i> Purpose: <?php echo $house['purpose']; ?></h6>
+                            <h6><i class="fa fa-home"></i> Type: <?php echo $house['type']; ?></h6>
+                            <h6><i class="fa fa-map-marker"></i> Location: <?php echo $house['location']; ?></h6>
+                            <h6><i class="fa fa-location-arrow"></i> Address: <?php echo $house['address']; ?></h6>
+                            <h6><i class="fa fa-th-large"></i> Area Size: <?php echo $house['area_size']; ?> sqft</h6>
+                            <h6><i class="fa fa-money"></i> Price: <?php echo $house['price']; ?> BDT</h6>
+                            <h6><i class="fa fa-arrow-up"></i> Floor No: <?php echo $house['floor_no']; ?></h6>
+                            <h6><i class="fa fa-bed"></i> Beds: <?php echo $house['beds']; ?></h6>
+                            <h6><i class="fa fa-bath"></i> Baths: <?php echo $house['baths']; ?></h6>
+                            <h6><i class="fa fa-trello"></i> Balcony: <?php echo $house['balcony']; ?></h6>
+                            <h6><i class="fa fa-pencil"></i> Description: <?php echo $house['description']; ?></h6>
+                            
+
+                            <h6><i class="fa fa-picture-o"></i> Photos:</h6>
+                            <?php
+                            $dbid = $house['id'];
                             $sql = "SELECT image
-                            FROM approval_house_image
+                            FROM house_image
                             WHERE house_id='$dbid'";
                             $result1 = mysqli_query($conn,$sql);
                             $rows_img = mysqli_fetch_array($result1);
                             $img_src = $rows_img['image'];       
                         ?>
                         
-                            <img src="assets/uploads/<?php echo $rows_img['image']; ?>" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2"> 
-                    </div> 
-                </li> 
-            <?php }?>
-            </ul>
+                            <img src="assets/uploads/<?php echo $rows_img['image']; ?>" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
+                </div>
+            </div>
         </div>
+        </div>
+        <?php } }?>
     </div>
 </div>
 
