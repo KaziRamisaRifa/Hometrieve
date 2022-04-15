@@ -143,7 +143,7 @@ if (isset($_POST['log_in'])) {
         <div class="row card-holder">
             <div class="col-lg-3"></div>
             <div class="col-lg-6">
-                <h1 class="text-center text-dark text-capitalize pt-3">Login</h1>
+                <h1 class="text-center text-dark text-capitalize">Login</h1>
                 <hr class="w-25 pt-3">
                 <div class="card">
                     <form id="login_form" method="POST" action="login.php">
