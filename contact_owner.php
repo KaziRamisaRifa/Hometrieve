@@ -6,19 +6,24 @@ if($_SESSION['logged_in']==false){
   header('Location:login.php');
 }
 $userid  = $_SESSION['userid'];
-$h_id  = $_SESSION['houseid'];
+$h_id =  $_GET['id'];
 
   if (isset($_POST['contact'])) 
   {
-      
-        
+    $h_id =  $_GET['id'];
         $dbMess = strip_tags($_POST['message']);
-        $sql = "INSERT INTO contact (user_id, owner_id, house_id, message)
-        VALUES ('$userid', '$dbEmail', '$dbSub', '$dbMess');";
+        $sql = "SELECT user_id
+        FROM houses
+        WHERE id='$h_id'";
+        $result = mysqli_query($conn,$sql);
+        $row = mysqli_fetch_array($result);
+        $dbowner_id=$row['user_id'];
+        $sql = "INSERT INTO contact_owner(user_id, onwer_id, house_id, message,status)
+        VALUES ('$userid', '$dbowner_id', '$h_id', '$dbMess','Active');";
         mysqli_query($conn, $sql);
         echo "<script>
         alert('Thank you For Your Response!');
-        window.location.href='view_house_details.php';
+        window.location.href='view_house_details.php?id=$h_id';
         </script>";
   }
 ?>
@@ -57,7 +62,7 @@ $h_id  = $_SESSION['houseid'];
             <hr class="w-25">
             <div class="row" >
                 <div class="col-lg-8 col-md-8 mx-auto">
-                    <form id="feed" class="p-5 grey-text " method="POST" action="contact_owner.php">
+                    <form id="feed" class="p-5 grey-text " method="POST" action="contact_owner.php?id=<?php echo $h_id ?>">
                         <div class="md-form form-sm"> Send a message <i class="fa fa-commenting prefix"></i>
                             <textarea type="text" name="message" id="form8" class="md-textarea form-control form-control-sm" rows="4" required=""></textarea>
 

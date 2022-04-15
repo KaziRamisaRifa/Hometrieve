@@ -1,6 +1,10 @@
 <?php
 include 'connection.php';
 session_start();
+if($_SESSION['logged_in']==false){
+  header('Location:login.php');
+}
+
 $userid = $_SESSION['userid'];
 $sql = "SELECT * FROM user WHERE id='$userid'";
 $result = mysqli_query($conn, $sql);
@@ -9,6 +13,16 @@ $username=$row['first_name'];
 $last_name = $row['last_name'];
 $user_email=$row['email'];
 $user_phone=$row['contact'];
+
+$sql = "SELECT COUNT(*) 
+FROM contact_owner
+WHERE onwer_id='$userid' AND status='Active'";
+$result = mysqli_query($conn, $sql);
+$row1 = mysqli_fetch_assoc($result);
+$dbbadge= $row1['COUNT(*)'];
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -34,29 +48,21 @@ $user_phone=$row['contact'];
 
   <title>User | Profile</title>
   <style>
-    .notification {
-  background-color: #555;
-  color: white;
-  text-decoration: none;
-  padding: 15px 26px;
-  position: relative;
-  display: inline-block;
-  border-radius: 2px;
+    .badge{
+    display: inline-block;
+    min-width: 10px;
+    padding: 5px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #f50707;
+    border-radius: 10px;
 }
 
-.notification:hover {
-  background: red;
-}
-
-.notification .badge {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  padding: 5px 10px;
-  border-radius: 50%;
-  background: red;
-  color: white;
-}
     body {
       
       background-image: url('assets/image/up_bg.jpg');
@@ -75,10 +81,10 @@ $user_phone=$row['contact'];
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li class="dropdown"><a class="nav-link scrollto active" href="#team"><span>Home</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a class="nav-link scrollto" href="#team"><span>Houses</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="">Rent Home</a></li>
-              <li><a href="">Buy Houses</a></li>
+              <li><a href="view_houses_rent.php">Rent House</a></li>
+              <li><a href="view_houses_buy.php">Buy House</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href="#team"><span>Lands</span> <i class="bi bi-chevron-down"></i></a>
@@ -99,11 +105,10 @@ $user_phone=$row['contact'];
 
           if (empty($_SESSION['logged_in'])) echo '<li><a class="nav-link scrollto" href="login.php">Login</a></li>';
           else {
-            echo '<li class="dropdown"><span>Profile</span><i class="bi bi-chevron-down"></i>
+            echo '<li class="dropdown"><a class="nav-link scrollto active" href="#team"><span>Profile</span><i class="bi bi-chevron-down"></i></a>
             <ul style="text-align:center;">
                 <li><span>Welcome</span></li>
                 <li><span>' . $username . '</span></li>
-                <li><a href="user_profile.php">Profile</a></li>
                 <li><a href="logout.php">Logout</a></li>
               </ul>
           </li>';
@@ -209,7 +214,7 @@ $user_phone=$row['contact'];
       </div>
       <div class="col-md-2">
         <br>
-        <a href="view_inbox.php" class="notification"><span>Inbox</span><span class="badge"></span></a>
+        <a class="button1" href="view_inbox.php"  ><span>Inbox  </span><span class="badge"><?php echo $dbbadge; ?></span></a>
         <br><br>
         <a class="button1" href="donor_login.php" role="button">Edit Profile</a>
       </div>

@@ -50,14 +50,16 @@ if (isset($_POST['log_in'])) {
       $Pass = $row["password"];
       // Check if the username and the password they entered was correct
       if ($Contact == $dbemailcontact && $Pass == $dbpass) {
-        $sql = "SELECT id
+        $sql = "SELECT id,email
                 FROM user
                 WHERE contact='$dbemailcontact'";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         $dbid = $row["id"];
+        $dbEmail = $row["email"];
         session_start();
         $_SESSION['userid'] = $dbid;
+        $_SESSION['user_email_address']=$dbEmail;
         $_SESSION['logged_in'] = true;
         header("Location: index.php");
       } else {
@@ -109,10 +111,10 @@ if (isset($_POST['log_in'])) {
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li class="dropdown"><a class="nav-link scrollto active" href="#team"><span>Home</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a class="nav-link scrollto" href="#team"><span>Houses</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="">Rent Home</a></li>
-              <li><a href="">Buy Houses</a></li>
+              <li><a href="">Rent House</a></li>
+              <li><a href="">Buy House</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href="#team"><span>Lands</span> <i class="bi bi-chevron-down"></i></a>
@@ -131,7 +133,7 @@ if (isset($_POST['log_in'])) {
 
           <?php
 
-          if (empty($_SESSION['logged_in'])) echo '<li><a class="nav-link scrollto" href="login.php">Login</a></li>';
+          if (empty($_SESSION['logged_in'])) echo '<li><a class="nav-link scrollto active" href="login.php">Login</a></li>';
           else {
             echo '<li class="dropdown"><span>Profile</span><i class="bi bi-chevron-down"></i>
             <ul style="text-align:center;">
@@ -151,7 +153,7 @@ if (isset($_POST['log_in'])) {
 
     </div>
   </header><!-- End Header -->
-  <<<<<<< HEAD <div class="container">
+  <div class="container">
     <div class="row card-holder">
       <div class="col-lg-3"></div>
       <div class="col-lg-6 d-flex flex-column align-items-center justify-content-center ">
