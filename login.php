@@ -151,6 +151,7 @@ if (isset($_POST['log_in'])) {
 
     </div>
   </header><!-- End Header -->
+<<<<<<< HEAD
 
   <div class="container">
     <div class="row card-holder">
@@ -163,6 +164,32 @@ if (isset($_POST['log_in'])) {
             <div class="form-group mb-3">
               <label for="email">Email address/Contact No:</label>
               <input name="emailcontact" class="form-control" placeholder="Enter email or contact number" id="emailcontact" type="text" required="">
+=======
+    <div class="container">
+        <div class="row card-holder">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <h1 class="text-center text-dark text-capitalize">Login</h1>
+                <hr class="w-25 pt-3">
+                <div class="card">
+                    <form id="login_form" method="POST" action="login.php">
+                        <div class="form-group">
+                            <label for="email">Email address/Contact No:</label>
+                            <input name="emailcontact" class="form-control" placeholder="Enter email or contact number" id="emailcontact" type="text" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Password:</label>
+                            <input name="password" class="form-control" placeholder="Enter password" id="pwd" type="password" required="">
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <button name="log_in" class="btn btn-primary w-50"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
+                            <hr>
+                            <button type="submit" class="btn btn-danger" onclick="window.location = 'signup.php';"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</button>
+                            <button type="button" onclick="window.location = '<?php echo $loginUrl; ?>'" class="btn btn-danger"><i class="fa fa-google"></i> Login With Google</button>
+                        </div>
+                    </form>
+                </div>
+>>>>>>> 79088230f710e359c9a08267d2f1b6aba365ad9d
             </div>
             <div class="form-group mb-3">
               <label for="pwd">Password:</label>
