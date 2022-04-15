@@ -9,8 +9,9 @@ $userid  = $_SESSION['userid'];
 
 $sql = "SELECT * FROM contact_owner WHERE onwer_id='$userid'";
 $result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-$hid= $row['house_id'];
+
+
+
 
 
 
@@ -20,7 +21,7 @@ $hid= $row['house_id'];
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Contact Us</title>
+        <title>Inbox</title>
         <meta charset="utf-8">
         
         <link href="assets/image/logo1c.jpeg" rel="icon">
@@ -53,15 +54,25 @@ $hid= $row['house_id'];
     <div class="row">
         <div class="col-lg-8 mx-auto">
             <ul class="list-group shadow">
+            <?php
+          while ($row1 = mysqli_fetch_array($result)) {
+            $h_id=$row1['house_id'];
+            $dbmsg=$row1['message'];
+            $sql = "SELECT * FROM houses WHERE id='$h_id'";
+            $result1 = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_array($result1);
+            
+
+          ?>
                 <li class="list-group-item">
                     <div class="media align-items-lg-center flex-column flex-lg-row p-3">
                         <div class="media-body order-2 order-lg-1">
                         
-                            <h4><i class="fa fa-user"></i> User Name: Ramisa</h4>
-                            <h4><i class="fa fa-envelope"></i> User Email: kazi.rifa09@gmail.com</h4>
-                            <h4><i class="fa fa-phone"></i> User Contact No: 01953639689</h4>
-                            <h4><i class="fa fa-pencil"></i> Message: I want to rent your house. When will I call you?</h4>
-                            <p><a href="view_house_details.php">View House Details---></a></p>
+                            <h4><i class="fa fa-user"></i> User Name: <?php echo $row['owner_name']; ?></h4>
+                            <h4><i class="fa fa-envelope"></i> User Email: <?php echo $row['owner_email']; ?></h4>
+                            <h4><i class="fa fa-phone"></i> User Contact No: <?php echo $row['owner_contact']; ?></h4>
+                            <h4><i class="fa fa-pencil"></i> Message: <?php echo $dbmsg; ?></h4>
+                            <p><a href="view_house_details.php?id=<?php echo $h_id ?>">View House Details---></a></p>
 
                             
                         
@@ -76,7 +87,8 @@ $hid= $row['house_id'];
                         </div>
                         
                     </div> 
-                </li> 
+                </li>
+                <?php } ?> 
             </ul>
         </div>
     </div>

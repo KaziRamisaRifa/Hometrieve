@@ -4,7 +4,7 @@ session_start();
 $userid = $_SESSION['userid'];
 include 'connection.php';
 
-$sql = "SELECT * FROM houses";
+$sql = "SELECT * FROM houses WHERE purpose='For Rent'";
 $result = mysqli_query($conn, $sql);
 
 
@@ -74,10 +74,10 @@ if (isset($_POST['delete'])) {
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li class="dropdown"><a class="nav-link scrollto active" href="#team"><span>Home</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a class="nav-link scrollto active" href="#team"><span>Houses</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="">Rent Home</a></li>
-              <li><a href="">Buy Houses</a></li>
+              <li><a href="view_houses_rent.php">Rent House</a></li>
+              <li><a href="view_houses_buy.php">Buy House</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href="#team"><span>Lands</span> <i class="bi bi-chevron-down"></i></a>
@@ -98,7 +98,7 @@ if (isset($_POST['delete'])) {
 
           if (empty($_SESSION['logged_in'])) echo '<li><a class="nav-link scrollto" href="login.php">Login</a></li>';
           else {
-            echo '<li class="dropdown"><span>Profile</span><i class="bi bi-chevron-down"></i>
+            echo '<li class="dropdown"><a href="#team"><span>Profile</span><i class="bi bi-chevron-down"></i></a>
             <ul style="text-align:center;">
                 <li><span>Welcome</span></li>
                 <li><span>' . $username . '</span></li>
@@ -136,9 +136,9 @@ if (isset($_POST['delete'])) {
                   <div class="d-flex align-items-center justify-content-between mt-1">
                     <h6><strong><i class="fa fa-money" aria-hidden="true"></i> <?php echo $row['price']; ?> BDT</strong></h6>
                     <?php
-                    $_SESSION['houseid'] = $row['id'];
+                    $dbid = $row['id'];
                     ?>
-                    <p><a href="view_house_details.php">View Details---></a></p>
+                    <p><a href="view_house_details.php?id=<?php echo $dbid ?>">View Details---></a></p>
                   </div>
                   <form method="POST">
                     <input name="hid" type="hidden" value="<?php echo $row['id']; ?>">
