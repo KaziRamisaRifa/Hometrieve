@@ -6,6 +6,7 @@
 body {
     font-family: "Open Sans", sans-serif;
     color: #444444;
+    overflow-x: hidden;
   }
   
   .popup-ol{
@@ -406,6 +407,11 @@ body {
   /*--------------------------------------------------------------
   # Hero Section
   --------------------------------------------------------------*/
+  .landing-section{
+    height: 100vh;
+    background: url('../assets/image/image_processing20210329-5805-58qwd.jpg');
+    background-size: cover;
+  }
   .carousel-inner {
     width: 100%;
     height: 100%;

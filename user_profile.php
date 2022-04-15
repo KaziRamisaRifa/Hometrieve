@@ -16,14 +16,19 @@ $user_phone=$row['contact'];
 
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
   <link href="css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/user_profile.css">
 
@@ -87,14 +92,14 @@ $user_phone=$row['contact'];
               <li><a href="add_lands.php">Add Lands</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="#">Contact</a></li>
-          <li><a class="nav-link scrollto" href="#">Register</a></li>
+          <li><a class="nav-link " href="contact_us.php">Contact</a></li>
+          <li><a class="nav-link " href="signup.php">Register</a></li>
 
           <?php
 
           if (empty($_SESSION['logged_in'])) echo '<li><a class="nav-link scrollto" href="login.php">Login</a></li>';
           else {
-            echo '<li class="dropdown"><span><strong>Profile</strong></span><i class="bi bi-chevron-down"></i>
+            echo '<li class="dropdown"><span>Profile</span><i class="bi bi-chevron-down"></i>
             <ul style="text-align:center;">
                 <li><span>Welcome</span></li>
                 <li><span>' . $username . '</span></li>

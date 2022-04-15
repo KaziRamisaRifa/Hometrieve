@@ -81,8 +81,8 @@ if (!empty($_SESSION['user_first_name'])) {
               <li><a href="add_lands.php">Add Lands</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="#">Contact</a></li>
-          <li><a class="nav-link scrollto" href="#">Register</a></li>
+          <li><a class="nav-link " href="contact_us.php">Contact</a></li>
+          <li><a class="nav-link " href="signup.php">Register</a></li>
 
           <?php
 

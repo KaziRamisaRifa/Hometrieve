@@ -102,7 +102,9 @@ if (isset($_POST['unfavourite']))
                             WHERE house_id='$dbid'";
                             $result1 = mysqli_query($conn,$sql);
                             $rows_img = mysqli_fetch_array($result1);
-                            $img_src = $rows_img['image'];       
+                            if(!empty($rows_img)){
+                                $img_src = $rows_img['image']; 
+                            }     
                         ?>
                         
                             <img src="assets/uploads/<?php echo $rows_img['image']; ?>" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2"> 
