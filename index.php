@@ -88,7 +88,7 @@ if (!empty($_SESSION['user_first_name'])) {
 
           if (empty($_SESSION['logged_in'])) echo '<li><a class="nav-link scrollto" href="login.php">Login</a></li>';
           else {
-            echo '<li class="dropdown"><span>Profile</span><i class="bi bi-chevron-down"></i>
+            echo '<li class="dropdown"><a href="#team"><span>Profile</span><i class="bi bi-chevron-down"></i></a>
             <ul style="text-align:center;">
                 <li><span>Welcome</span></li>
                 <li><span>' . $username . '</span></li>

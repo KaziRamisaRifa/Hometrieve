@@ -6,8 +6,7 @@ $userid = $_SESSION['userid'];
 //$sql = "SELECT * FROM compare_list WHERE user_id='$userid'";
 //$result = mysqli_query($conn, $sql);
 
-//$sql = "SELECT * FROM compare_list WHERE user_id='$userid' ORDER BY user_id DESC LIMIT 2 ";
-$sql = "SELECT * FROM compare_list WHERE user_id='$userid'";
+$sql = "SELECT * FROM compare_list WHERE user_id='$userid' ORDER BY user_id DESC LIMIT 2 ";
 $result = mysqli_query($conn, $sql);
 
     
@@ -101,6 +100,11 @@ $result = mysqli_query($conn, $sql);
                         ?>
                         
                             <img src="assets/uploads/<?php echo $rows_img['image']; ?>" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
+                            <div class="row mt-5">
+                                <div class="col-md-12">
+                                    <button type="submit" onclick="window.location = 'contact_owner.php?id=<?php echo $dbid ?>';" class="btn btn-info btn-block"> Contact  </button>
+                                </div>
+                            </div>
                 </div>
             </div>
         </div>
