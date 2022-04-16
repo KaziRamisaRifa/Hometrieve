@@ -7,7 +7,7 @@ if($_SESSION['logged_in']==false){
 }
 $userid  = $_SESSION['userid'];
 
-$sql = "SELECT * FROM contact_owner WHERE onwer_id='$userid'";
+$sql = "SELECT * FROM contact_owner WHERE user_id='$userid'";
 $result = mysqli_query($conn, $sql);
 
 
@@ -21,7 +21,7 @@ $result = mysqli_query($conn, $sql);
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Inbox</title>
+        <title>Reply</title>
         <meta charset="utf-8">
         
         <link href="assets/image/logo1c.jpeg" rel="icon">
@@ -46,7 +46,7 @@ $result = mysqli_query($conn, $sql);
     
     </head>
     <body>
-    <h1 class="text-center text-dark text-capitalize pt-5">Inbox</h1>
+    <h1 class="text-center text-dark text-capitalize pt-5">Replies</h1>
                 <hr class="w-25 pt-3">
                 
 
@@ -58,7 +58,8 @@ $result = mysqli_query($conn, $sql);
           while ($row1 = mysqli_fetch_array($result)) {
             $h_id=$row1['house_id'];
             $dbmsg=$row1['message'];
-            $sql = "UPDATE contact_owner SET status='Inactive' WHERE onwer_id='$userid' AND house_id='$h_id'";
+            $dbrep=$row1['reply'];
+            $sql = "UPDATE contact_owner SET reply_status='Inactive' WHERE onwer_id='$userid' AND house_id='$h_id'";
             $result1 = mysqli_query($conn, $sql);
             
             $sql = "SELECT * FROM houses WHERE id='$h_id'";
@@ -74,19 +75,9 @@ $result = mysqli_query($conn, $sql);
                             <h4><i class="fa fa-user"></i> User Name: <?php echo $row['owner_name']; ?></h4>
                             <h4><i class="fa fa-envelope"></i> User Email: <?php echo $row['owner_email']; ?></h4>
                             <h4><i class="fa fa-phone"></i> User Contact No: <?php echo $row['owner_contact']; ?></h4>
-                            <h4><i class="fa fa-pencil"></i> Message: <?php echo $dbmsg; ?></h4>
+                            <h4><i class="fa fa-pencil"></i> Your Message: <?php echo $dbmsg; ?></h4>
+                            <h4><i class="fa fa-share"></i> Owner Reply: <?php echo $dbrep; ?></h4>
                             <p><a href="view_house_details.php?id=<?php echo $h_id ?>">View House Details---></a></p>
-
-                            
-                        
-                            <div class="row mt-5">
-                                <div class="col-md-6">
-                                    <button type="submit" onclick="window.location = 'reply_inbox.php?id=<?php echo $h_id ?>';" class="btn btn-info btn-block"> Reply  </button>
-                                </div>
-                                <div class="col-md-6">
-                                    <button type="submit" onclick="window.location = 'contact_owner.php';" class="btn btn-info btn-block"> Delete  </button>
-                                </div>
-                            </div>
                         </div>
                         
                     </div> 
