@@ -21,6 +21,13 @@ $result = mysqli_query($conn, $sql);
 $row1 = mysqli_fetch_assoc($result);
 $dbbadge= $row1['COUNT(*)'];
 
+$sql = "SELECT COUNT(*) 
+FROM contact_owner
+WHERE user_id='$userid' AND reply_status='Active'";
+$result = mysqli_query($conn, $sql);
+$row1 = mysqli_fetch_assoc($result);
+$dbbadge1= $row1['COUNT(*)'];
+
 
 
 ?>
@@ -215,6 +222,8 @@ $dbbadge= $row1['COUNT(*)'];
       <div class="col-md-2">
         <br>
         <a class="button1" href="view_inbox.php"  ><span>Inbox  </span><span class="badge"><?php echo $dbbadge; ?></span></a>
+        <br><br>
+        <a class="button1" href="view_replies.php"  ><span>Replies  </span><span class="badge"><?php echo $dbbadge1; ?></span></a>
         <br><br>
         <a class="button1" href="donor_login.php" role="button">Edit Profile</a>
       </div>
