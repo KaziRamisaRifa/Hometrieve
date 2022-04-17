@@ -59,7 +59,7 @@ $result = mysqli_query($conn, $sql);
             $h_id=$row1['house_id'];
             $dbmsg=$row1['message'];
             $dbrep=$row1['reply'];
-            $sql = "UPDATE contact_owner SET reply_status='Inactive' WHERE onwer_id='$userid' AND house_id='$h_id'";
+            $sql = "UPDATE contact_owner SET reply_status='Inactive' WHERE user_id='$userid' AND house_id='$h_id'";
             $result1 = mysqli_query($conn, $sql);
             
             $sql = "SELECT * FROM houses WHERE id='$h_id'";

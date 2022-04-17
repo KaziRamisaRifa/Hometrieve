@@ -222,11 +222,13 @@ $dbbadge1= $row1['COUNT(*)'];
       </div>
       <div class="col-md-2">
         <br>
+        <a class="button1" href="donor_login.php" role="button">Edit Profile</a>
+        <br><br>
         <a class="button1" href="view_inbox.php"  ><span>Inbox  </span><span class="badge"><?php echo $dbbadge; ?></span></a>
         <br><br>
         <a class="button1" href="view_replies.php"  ><span>Replies  </span><span class="badge"><?php echo $dbbadge1; ?></span></a>
-        <br><br>
-        <a class="button1" href="donor_login.php" role="button">Edit Profile</a>
+        
+        
       </div>
       <div class="col-md-5 col-lg-5 col-sm-12">
         <div class="row pt-5">
