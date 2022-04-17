@@ -2,55 +2,50 @@
 session_start();
 include 'connection.php';
 
-$_SESSION['search_location'] = $_POST['location'];
-$_SESSION['search_purpose'] = $_POST['purpose'];
-$_SESSION['search_type'] = $_POST['type'];
+$location = '';
+$purpose = '';
+$type = '';
+$userid = '';
 
-$location = $_SESSION['search_location'];
-$purpose = $_SESSION['search_purpose'];
-$type = $_SESSION['search_type'];
+if (!empty($_POST['location']) && !empty($_POST['purpose']) && !empty($_POST['type'])) {
+  $_SESSION['search_location'] = $_POST['location'];
+  $_SESSION['search_purpose'] = $_POST['purpose'];
+  $_SESSION['search_type'] = $_POST['type'];
+} else {
+  # code...
+}
+
 $userid = $_SESSION['userid'];
 
+
 if (isset($_POST['favourite'])) {
-    $dbid = strip_tags($_POST['hid']);
-    $sql = "INSERT INTO favorites(user_id,house_id)
+  $dbid = strip_tags($_POST['hid']);
+  $sql = "INSERT INTO favorites(user_id,house_id)
           VALUES ('$userid','$dbid')";
-    mysqli_query($conn, $sql);
-    header("Location: form-test.php");
-  }
-  
-  if (isset($_POST['unfavourite'])) {
-    $dbid = strip_tags($_POST['hid']);
-    $sql = "DELETE FROM favorites WHERE house_id= '$dbid' AND user_id='$userid' ";
-    mysqli_query($conn, $sql);
-    header("Location: form-test.php");
-  }
-  
-  if (isset($_POST['compare'])) {
-    $dbid = strip_tags($_POST['hid']);
-    $sql = "INSERT INTO compare_list(user_id,house_id)
+  mysqli_query($conn, $sql);
+  header("Location: search.php");
+}
+
+if (isset($_POST['unfavourite'])) {
+  $dbid = strip_tags($_POST['hid']);
+  $sql = "DELETE FROM favorites WHERE house_id= '$dbid' AND user_id='$userid' ";
+  mysqli_query($conn, $sql);
+  header("Location: search.php");
+}
+
+if (isset($_POST['compare'])) {
+  $dbid = strip_tags($_POST['hid']);
+  $sql = "INSERT INTO compare_list(user_id,house_id)
           VALUES ('$userid','$dbid')";
-    mysqli_query($conn, $sql);
-    header("Location: form-test.php");
-  }
-  
-  if (isset($_POST['uncompare'])) {
-    $dbid = strip_tags($_POST['hid']);
-    $sql = "DELETE FROM compare_list WHERE house_id= '$dbid' AND user_id='$userid' ";
-    mysqli_query($conn, $sql);
-    header("Location: form-test.php");
-  }
+  mysqli_query($conn, $sql);
+  header("Location: search.php");
+}
 
-echo $location." ".$purpose." ".$type;
-
-$sql = "SELECT * FROM houses WHERE location='$location' AND purpose='$purpose' AND type='$type';";
-$result = $conn->query($sql);
-
-
-
-while ($row = $result->fetch_assoc()) {
-    echo "id: " . $row["id"] . " - Address: " . $row["address"] . " - Area Size: " . $row["area_size"] ."sqft". " - Price: " . $row["price"] ."tk". " - Beds: " . $row["beds"]." - Baths: " . $row["baths"];
-    echo '<br>';
+if (isset($_POST['uncompare'])) {
+  $dbid = strip_tags($_POST['hid']);
+  $sql = "DELETE FROM compare_list WHERE house_id= '$dbid' AND user_id='$userid' ";
+  mysqli_query($conn, $sql);
+  header("Location: search.php");
 }
 ?>
 
@@ -122,7 +117,7 @@ while ($row = $result->fetch_assoc()) {
             echo '<li class="dropdown"><a href="#team"><span>Profile</span><i class="bi bi-chevron-down"></i></a>
             <ul style="text-align:center;">
                 <li><span>Welcome</span></li>
-                <li><span>' . $username . '</span></li>
+                <li><span>' . $_SESSION['username'] . '</span></li>
                 <li><a href="user_profile.php">Profile</a></li>
                 <li><a href="logout.php">Logout</a></li>
               </ul>
@@ -143,6 +138,11 @@ while ($row = $result->fetch_assoc()) {
       <div class="col-lg-8 mx-auto">
         <ul class="list-group shadow">
           <?php
+
+          $location = $_SESSION['search_location'];
+          $purpose = $_SESSION['search_purpose'];
+          $type = $_SESSION['search_type'];
+
           $sql = "SELECT * FROM houses WHERE location='$location' AND purpose='$purpose' AND type='$type';";
           $result = $conn->query($sql);
           while ($row = mysqli_fetch_array($result)) {
@@ -190,14 +190,14 @@ while ($row = $result->fetch_assoc()) {
                       $row1 = mysqli_fetch_array($result1);
                       if ($row1 == NULL) {
                       ?>
-                      <div class="col-md-6">
-                        <button type="submit" name="compare" class="btn btn-danger btn-block"> Add to compare </button>
-                      </div>
+                        <div class="col-md-6">
+                          <button type="submit" name="compare" class="btn btn-danger btn-block"> Add to compare </button>
+                        </div>
                       <?php } else {
                       ?>
-                      <div class="col-md-6">
-                        <button type="submit" name="uncompare" class="btn btn-danger btn-block"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Compared already </button>
-                      </div>
+                        <div class="col-md-6">
+                          <button type="submit" name="uncompare" class="btn btn-danger btn-block"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Compared already </button>
+                        </div>
                       <?php } ?>
                     </div>
                   </form>

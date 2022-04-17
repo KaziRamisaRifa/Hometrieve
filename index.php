@@ -170,13 +170,13 @@ if (!empty($_SESSION['user_first_name'])) {
     <section class="container" data-aos="fade-up" data-aos-delay="100">
       <div class="search-bar">
 
-        <form action="form-test.php" method="POST">
+        <form action="search.php" method="POST">
           <div class="row g-3">
 
             <div class="col-md-6">
               <label for="location" class="form-label">Location</label>
-              <select name="location" class="form-select" id="location" aria-label="Select Location">
-                <option disabled selected>Select Location</option>
+              <select name="location" class="form-select" id="location" aria-label="Select Location" required>
+                <option value="" disabled selected>Select Location</option>
                 <option value="Bashundhara">Bashundhara</option>
                 <option value="Banani">Banani</option>
                 <option value="Mirpur">Mirpur</option>
@@ -191,8 +191,8 @@ if (!empty($_SESSION['user_first_name'])) {
 
             <div class="col-md-3">
               <label for="purpose" class="form-label">Purpose</label>
-              <select name="purpose" class="form-select" id="purpose" aria-label="Purpose">
-                <option disabled selected>What's your purpose?</option>
+              <select name="purpose" class="form-select" id="purpose" aria-label="Purpose" required>
+                <option value="" disabled selected>What's your purpose?</option>
                 <option value="For Buy" selected>Buy</option>
                 <option value="For Rent">Rent</option>
               </select>
@@ -200,8 +200,8 @@ if (!empty($_SESSION['user_first_name'])) {
 
             <div class="col-md-3">
               <label for="type" class="form-label">Type</label>
-              <select name="type" class="form-select" id="type" aria-label="Type">
-                <option disabled selected>Select type</option>
+              <select name="type" class="form-select" id="type" aria-label="Type" required>
+                <option value="" disabled selected>Select type</option>
                 <option value="Apartment">Apartment</option>
                 <option value="Land">Land</option>
                 <option value="Bachelor">Bachelor</option>
