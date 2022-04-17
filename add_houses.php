@@ -4,6 +4,7 @@ if($_SESSION['logged_in']==false){
   header('Location:login.php');
 }
 $user_id  = $_SESSION['userid'];
+$username = $_SESSION['username'];
 include 'connection.php';
 
 if (isset($_POST['add_house'])) 
@@ -42,7 +43,7 @@ if (isset($_POST['add_house']))
         $sql = "INSERT INTO approval_house_image(house_id,image) value ('$last_id','$imageName')";
         mysqli_query($conn, $sql);
     }
-    header("Location: user_profile.php?");
+    header("Location: user_profile.php");
     
     
 }
@@ -77,7 +78,7 @@ if (isset($_POST['add_house']))
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li class="dropdown"><a class="nav-link scrollto active" href="#team"><span>Home</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#team"><span>Home</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="">Rent Home</a></li>
               <li><a href="">Buy Houses</a></li>
@@ -88,7 +89,7 @@ if (isset($_POST['add_house']))
               <li><a href="">Buy Land</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#team"><span>Add property</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a class="nav-link scrollto active" href="#team"><span>Add property</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="add_houses.php">Add Houses</a></li>
               <li><a href="add_lands.php">Add Lands</a></li>
@@ -101,7 +102,7 @@ if (isset($_POST['add_house']))
 
           if (empty($_SESSION['logged_in'])) echo '<li><a class="nav-link scrollto" href="login.php">Login</a></li>';
           else {
-            echo '<li class="dropdown"><span>Profile</span><i class="bi bi-chevron-down"></i>
+            echo '<li class="dropdown"><a href="#team"><span>Profile</span><i class="bi bi-chevron-down"></i></a>
             <ul style="text-align:center;">
                 <li><span>Welcome</span></li>
                 <li><span>' . $username . '</span></li>

@@ -11,8 +11,6 @@ if (isset($_POST['log_in'])) {
   if (strpos($dbemailcontact, $word) !== false) {
     $sql = "SELECT email, password FROM user";
     $result = mysqli_query($conn, $sql);
-    $sql = "SELECT email, password FROM user";
-    $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
       // output data of each row
       while ($row = mysqli_fetch_assoc($result)) {
@@ -20,15 +18,16 @@ if (isset($_POST['log_in'])) {
         $Pass = $row["password"];
         // Check if the username and the password they entered was correct
         if ($Email == $dbemailcontact && $Pass == $dbpass) {
-          $sql = "SELECT id
+          $sql = "SELECT id,first_name
                     FROM user
                     WHERE email='$dbemailcontact'";
           $result = mysqli_query($conn, $sql);
           $row = mysqli_fetch_assoc($result);
           $dbid = $row["id"];
+          $dbname = $row["first_name"];
           session_start();
           $_SESSION['userid'] = $dbid;
-          $_SESSION['user_email_address'] = $Email;
+          $_SESSION['username'] = $dbname;
 
           $_SESSION['logged_in'] = true;
           header("Location: index.php");
@@ -50,17 +49,18 @@ if (isset($_POST['log_in'])) {
       $Pass = $row["password"];
       // Check if the username and the password they entered was correct
       if ($Contact == $dbemailcontact && $Pass == $dbpass) {
-        $sql = "SELECT id,email
+        $sql = "SELECT id,first_name
                 FROM user
                 WHERE contact='$dbemailcontact'";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         $dbid = $row["id"];
-        $dbEmail = $row["email"];
-        session_start();
-        $_SESSION['userid'] = $dbid;
-        $_SESSION['user_email_address']=$dbEmail;
-        $_SESSION['logged_in'] = true;
+          $dbname = $row["first_name"];
+          session_start();
+          $_SESSION['userid'] = $dbid;
+          $_SESSION['username'] = $dbname;
+
+          $_SESSION['logged_in'] = true;
         header("Location: index.php");
       } else {
         // Display the alert box

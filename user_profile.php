@@ -6,6 +6,7 @@ if($_SESSION['logged_in']==false){
 }
 
 $userid = $_SESSION['userid'];
+
 $sql = "SELECT * FROM user WHERE id='$userid'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
@@ -186,23 +187,7 @@ $dbbadge1= $row1['COUNT(*)'];
             <br>
             <div class="row">
               <div class="col-md-4">
-                <label>House Status</label>
-              </div>
-              <div class="col-md-6">
-                <p>Active <a href="favourite_list.php">(View Details)</a></p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
-                <label>Land Status</label>
-              </div>
-              <div class="col-md-6">
-                <p>Active <a href="favourite_list.php">(View Details)</a></p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
-                <label>Favorite List</label>
+                <label>Favourite List (House)</label>
               </div>
               <div class="col-md-6">
                 <p><a href="favourite_list.php">View</a></p>
@@ -210,7 +195,23 @@ $dbbadge1= $row1['COUNT(*)'];
             </div>
             <div class="row">
               <div class="col-md-4">
-                <label>Compare List</label>
+                <label>Favourite List (Land)</label>
+              </div>
+              <div class="col-md-6">
+                <p><a href="favourite_list.php">View</a></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <label>Compare List (House)</label>
+              </div>
+              <div class="col-md-6">
+                <p><a href="favourite_list.php">View</a></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <label>Compare List (Land)</label>
               </div>
               <div class="col-md-6">
                 <p><a href="compare_list.php">View</a></p>

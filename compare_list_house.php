@@ -6,7 +6,7 @@ $userid = $_SESSION['userid'];
 //$sql = "SELECT * FROM compare_list WHERE user_id='$userid'";
 //$result = mysqli_query($conn, $sql);
 
-$sql = "SELECT * FROM compare_list WHERE user_id='$userid' ORDER BY user_id DESC LIMIT 2 ";
+$sql = "SELECT house_id FROM compare_list WHERE user_id='$userid' ORDER BY id DESC LIMIT 2 ";
 $result = mysqli_query($conn, $sql);
 
     
@@ -52,17 +52,9 @@ $result = mysqli_query($conn, $sql);
     <?php
                while($row = mysqli_fetch_assoc($result)){
                 $house_id = $row['house_id'];
-                $land_id = $row['land_id'];
                 $house_sql = "SELECT * FROM houses WHERE id='$house_id'";
-                $land_sql = "SELECT * FROM lands WHERE id='$land_id'";
-            
                 $house_result = mysqli_query($conn, $house_sql);
-                $land_result = mysqli_query($conn, $land_sql);
-                while ($house = mysqli_fetch_assoc($house_result)) {
-            
-                
-            
-               
+                while ($house = mysqli_fetch_assoc($house_result)) { 
                     
             ?>
 
