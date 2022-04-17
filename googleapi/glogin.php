@@ -51,6 +51,8 @@ if (!isset($token['error'])) {
     if (!empty($userdata['picture'])) {
         $_SESSION['user_image'] = $userdata['picture'];
     }
+
+    $_SESSION['username'] = $userdata['given_name']." ".$userdata['family_name'];
     
 }
 

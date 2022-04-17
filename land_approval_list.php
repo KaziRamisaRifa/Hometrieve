@@ -67,7 +67,7 @@ if (isset($_POST['delete'])) {
 
 
 <body>
-    <h1 class="text-center text-dark text-capitalize pt-5">Approval Lands List</h1>
+    <h1 class="text-center text-dark text-capitalize pt-5">Lands Approval List</h1>
     <hr class="w-25 pt-3">
 
 

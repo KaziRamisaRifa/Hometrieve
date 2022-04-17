@@ -7,7 +7,7 @@ $sql = "SELECT ((select count(*) from approval_house)+(select count(*) from appr
 $result = mysqli_query($conn, $sql);
 $pending = mysqli_fetch_assoc($result);
 
-$sql = "SELECT COUNT(*) AS num FROM houses";
+$sql = "SELECT ((select count(*) from houses)+(select count(*) from lands))as num";
 $result = mysqli_query($conn, $sql);
 $item = mysqli_fetch_assoc($result);
 ?>
@@ -23,18 +23,18 @@ $item = mysqli_fetch_assoc($result);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!----======== CSS ======== -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
 
-    
+
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    
+
     <title>Admin Dashboard</title>
-    
+
     <link rel="stylesheet" href="css/dashboard.css">
     <style>
-        body{
+        body {
             overflow: hidden;
         }
     </style>
@@ -59,21 +59,29 @@ $item = mysqli_fetch_assoc($result);
                 <ul class="menu-links">
 
                     <li class="nav-link active">
-                        <a href="house_approval_list.php">
+                        <a class="" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class='bx bx-timer icon'></i>
                             <span class="text nav-text">Approval</span>
                         </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="house_approval_list.php">Houses</a></li>
+                            <li><a class="dropdown-item" href="land_approval_list.php">Lands</a></li>
+                        </ul>
                     </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-shopping-bag icon'></i>
-                            <span class="text nav-text">Products List</span>
+                    
+                    <li class="nav-link active">
+                        <a class="" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class='bx bx-timer icon'></i>
+                            <span class="text nav-text">Product List</span>
                         </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="house_approval_list.php">Houses</a></li>
+                            <li><a class="dropdown-item" href="land_approval_list.php">Lands</a></li>
+                        </ul>
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="view _feedback.php">
                             <i class='bx bx-pie-chart-alt icon'></i>
                             <span class="text nav-text">User Feedback</span>
                         </a>
@@ -96,6 +104,7 @@ $item = mysqli_fetch_assoc($result);
     </nav>
 
     <section class="home">
+
         <div class="text">Admin Panel</div>
 
         <div class="row d-flex p-4">
@@ -134,6 +143,8 @@ $item = mysqli_fetch_assoc($result);
     </section>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
 
     <script>
         $('.count').each(function() {
