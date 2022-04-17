@@ -115,16 +115,12 @@ $userid  = $_SESSION['userid'];
                             <h6><i class="fa fa-user"></i> Owner Name: <?php echo $row['owner_name']; ?></h6>
                             <h6><i class="fa fa-envelope"></i> Owner Email: <?php echo $row['owner_email']; ?></h6>
                             <h6><i class="fa fa-phone"></i> Owner Contact No: <?php echo $row['owner_contact']; ?></h6>
-                            <h6><i class="fa fa-check-square-o"></i> Purpose: <?php echo $row['purpose']; ?></h6>
-                            <h6><i class="fa fa-home"></i> Type: <?php echo $row['type']; ?></h6>
+                            
                             <h6><i class="fa fa-map-marker"></i> Location: <?php echo $row['location']; ?></h6>
                             <h6><i class="fa fa-location-arrow"></i> Address: <?php echo $row['address']; ?></h6>
                             <h6><i class="fa fa-th-large"></i> Area Size: <?php echo $row['area_size']; ?> sqft</h6>
                             <h6><i class="fa fa-money"></i> Price: <?php echo $row['price']; ?> BDT</h6>
-                            <h6><i class="fa fa-arrow-up"></i> Floor No: <?php echo $row['floor_no']; ?></h6>
-                            <h6><i class="fa fa-bed"></i> Beds: <?php echo $row['beds']; ?></h6>
-                            <h6><i class="fa fa-bath"></i> Baths: <?php echo $row['baths']; ?></h6>
-                            <h6><i class="fa fa-trello"></i> Balcony: <?php echo $row['balcony']; ?></h6>
+                            
                             <h6><i class="fa fa-pencil"></i> Description: <?php echo $row['description']; ?></h6>
                             
 
@@ -132,8 +128,8 @@ $userid  = $_SESSION['userid'];
                         <?php
                         
                             $sql = "SELECT image
-                            FROM house_image
-                            WHERE house_id='$h_id'";
+                            FROM land_image
+                            WHERE land_id='$l_id'";
                             $result1 = mysqli_query($conn,$sql);
                             while($rows_img = mysqli_fetch_array($result1))
                             {                               

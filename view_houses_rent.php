@@ -149,6 +149,16 @@ if (isset($_POST['uncompare'])) {
                     <p><a href="view_house_details.php?id=<?php echo $dbid ?>">View Details---></a></p>
                   </div>
                   <div class="d-flex align-items-center justify-content-between mt-1">
+                  <?php
+                      $h_id = $row['id'];
+                      $sql = "SELECT COUNT(*) 
+                      FROM contact_owner
+                      WHERE user_id='$userid' AND reply_status='Active'";
+                      $sql = "SELECT house_id FROM favorites where user_id='$userid' AND house_id='$h_id'";
+                      $result1 = mysqli_query($conn, $sql);
+                      $row1 = mysqli_fetch_array($result1);
+                      if ($row1 == NULL) {
+                      ?>
                     <h6><strong><i class="fa fa-heart" aria-hidden="true"></i> 4</strong></h6>
                   </div>
                   <form method="POST">

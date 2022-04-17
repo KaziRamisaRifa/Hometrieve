@@ -4,7 +4,7 @@ session_start();
 $userid = $_SESSION['userid'];
 include 'connection.php';
 
-$sql = "SELECT * FROM houses WHERE purpose='For Buy'";
+$sql = "SELECT * FROM houses WHERE purpose='For Sell'";
 $result = mysqli_query($conn, $sql);
 
 
@@ -13,21 +13,29 @@ if (isset($_POST['favourite'])) {
   $sql = "INSERT INTO favorites(user_id,house_id)
         VALUES ('$userid','$dbid')";
   mysqli_query($conn, $sql);
-  header("Location: view_houses.php");
+  header("Location: view_houses_rent.php");
 }
 
 if (isset($_POST['unfavourite'])) {
   $dbid = strip_tags($_POST['hid']);
-  $sql = "DELETE FROM favorites WHERE house_id= '$dbid'";
+  $sql = "DELETE FROM favorites WHERE house_id= '$dbid' AND user_id='$userid' ";
   mysqli_query($conn, $sql);
-  header("Location: view_houses.php");
+  header("Location: view_houses_rent.php");
 }
 
-if (isset($_POST['delete'])) {
+if (isset($_POST['compare'])) {
   $dbid = strip_tags($_POST['hid']);
-  $sql = "DELETE FROM approval_land WHERE id= '$dbid'";
+  $sql = "INSERT INTO compare_list(user_id,house_id)
+        VALUES ('$userid','$dbid')";
   mysqli_query($conn, $sql);
-  header("Location: view_houses.php");
+  header("Location: view_houses_rent.php");
+}
+
+if (isset($_POST['uncompare'])) {
+  $dbid = strip_tags($_POST['hid']);
+  $sql = "DELETE FROM compare_list WHERE house_id= '$dbid' AND user_id='$userid' ";
+  mysqli_query($conn, $sql);
+  header("Location: view_houses_rent.php");
 }
 
 ?>
@@ -140,6 +148,9 @@ if (isset($_POST['delete'])) {
                     ?>
                     <p><a href="view_house_details.php?id=<?php echo $dbid ?>">View Details---></a></p>
                   </div>
+                  <div class="d-flex align-items-center justify-content-between mt-1">
+                    <h6><strong><i class="fa fa-heart" aria-hidden="true"></i> 4</strong></h6>
+                  </div>
                   <form method="POST">
                     <input name="hid" type="hidden" value="<?php echo $row['id']; ?>">
                     <div class="row">
@@ -157,13 +168,26 @@ if (isset($_POST['delete'])) {
                       <?php } else {
                       ?>
                         <div class="col-md-6">
-                          <button type="submit" name="unfavourite" class="btn btn-success btn-block"> Favourite </button>
+                          <button type="submit" name="unfavourite" class="btn btn-success btn-block"><i class="fa fa-heart" aria-hidden="true"></i> Favourite </button>
                         </div>
 
                       <?php } ?>
+                      <?php
+                      $h_id = $row['id'];
+                      $sql = "SELECT house_id FROM compare_list where user_id='$userid' AND house_id='$h_id'";
+                      $result1 = mysqli_query($conn, $sql);
+                      $row1 = mysqli_fetch_array($result1);
+                      if ($row1 == NULL) {
+                      ?>
                       <div class="col-md-6">
                         <button type="submit" name="compare" class="btn btn-danger btn-block"> Add to compare </button>
                       </div>
+                      <?php } else {
+                      ?>
+                      <div class="col-md-6">
+                        <button type="submit" name="uncompare" class="btn btn-danger btn-block"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Compared already </button>
+                      </div>
+                      <?php } ?>
                     </div>
                   </form>
                 </div>
