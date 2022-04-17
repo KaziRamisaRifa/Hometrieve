@@ -57,11 +57,12 @@ $result = mysqli_query($conn, $sql);
             <?php
           while ($row1 = mysqli_fetch_array($result)) {
             $h_id=$row1['house_id'];
+            $dbuser=$row1['user_id'];
             $dbmsg=$row1['message'];
             $sql = "UPDATE contact_owner SET status='Inactive' WHERE onwer_id='$userid' AND house_id='$h_id'";
             $result1 = mysqli_query($conn, $sql);
             
-            $sql = "SELECT * FROM houses WHERE id='$h_id'";
+            $sql = "SELECT * FROM user WHERE id='$dbuser'";
             $result1 = mysqli_query($conn, $sql);
             $row = mysqli_fetch_array($result1);
             
@@ -71,20 +72,17 @@ $result = mysqli_query($conn, $sql);
                     <div class="media align-items-lg-center flex-column flex-lg-row p-3">
                         <div class="media-body order-2 order-lg-1">
                         
-                            <h4><i class="fa fa-user"></i> User Name: <?php echo $row['owner_name']; ?></h4>
-                            <h4><i class="fa fa-envelope"></i> User Email: <?php echo $row['owner_email']; ?></h4>
-                            <h4><i class="fa fa-phone"></i> User Contact No: <?php echo $row['owner_contact']; ?></h4>
+                            <h4><i class="fa fa-user"></i> User Name: <?php echo $row['first_name']; ?></h4>
+                            <h4><i class="fa fa-envelope"></i> User Email: <?php echo $row['email']; ?></h4>
+                            <h4><i class="fa fa-phone"></i> User Contact No: <?php echo $row['contact']; ?></h4>
                             <h4><i class="fa fa-pencil"></i> Message: <?php echo $dbmsg; ?></h4>
                             <p><a href="view_house_details.php?id=<?php echo $h_id ?>">View House Details---></a></p>
 
                             
                         
                             <div class="row mt-5">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <button type="submit" onclick="window.location = 'reply_inbox.php?id=<?php echo $h_id ?>';" class="btn btn-info btn-block"> Reply  </button>
-                                </div>
-                                <div class="col-md-6">
-                                    <button type="submit" onclick="window.location = 'contact_owner.php';" class="btn btn-info btn-block"> Delete  </button>
                                 </div>
                             </div>
                         </div>
