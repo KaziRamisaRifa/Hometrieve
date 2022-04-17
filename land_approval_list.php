@@ -14,6 +14,11 @@ if (isset($_POST['approve'])) {
         WHERE id= '$dbid'";
     mysqli_query($conn, $sql);
 
+    $sql = "INSERT INTO land_image
+        SELECT * FROM approval_land_image
+        WHERE land_id= '$dbid'";
+    mysqli_query($conn, $sql);
+
     $sql = "DELETE FROM approval_land WHERE id= '$dbid'";
     mysqli_query($conn, $sql);
 
@@ -80,7 +85,7 @@ if (isset($_POST['delete'])) {
                                     <p class="text-muted"><i class="fa fa-envelope"> </i> <?php echo $row['owner_email']; ?> <br> <i class="fa fa-location-arrow"> </i> <?php echo $row['address']; ?></p>
                                     <div class="d-flex align-items-center justify-content-between mt-1">
                                         <h6><strong><i class="fa fa-money" aria-hidden="true"></i> <?php echo $row['price']; ?> BDT</strong></h6>
-                                        <p><a href="view_land_details.php?id=<?php echo $row['id']; ?>">View Details---></a></p>
+                                        <p><a href="view_land_details_admin.php?id=<?php echo $row['id']; ?>">View Details---></a></p>
                                     </div>
                                     <form method="POST">
                                         <input name="hid" type="hidden" value="<?php echo $row['id']; ?>">
@@ -108,10 +113,11 @@ if (isset($_POST['delete'])) {
                                 <img src="assets/uploads/<?php echo $rows_img['image']; ?>" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
 
                             </div>
-            </div>
+            
             </li>
         <?php } ?>
         </ul>
+        </div>
         </div>
     </div>
 

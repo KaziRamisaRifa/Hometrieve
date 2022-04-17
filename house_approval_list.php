@@ -14,6 +14,11 @@ if (isset($_POST['approve'])) {
         WHERE id= '$dbid'";
     mysqli_query($conn, $sql);
 
+    $sql = "INSERT INTO house_image
+        SELECT * FROM approval_house_image
+        WHERE house_id= '$dbid'";
+    mysqli_query($conn, $sql);
+
     $sql = "DELETE FROM approval_house WHERE id= '$dbid'";
     mysqli_query($conn, $sql);
 
@@ -82,10 +87,10 @@ if (isset($_POST['delete'])) {
                                     <p class="text-muted"><i class="fa fa-envelope"> </i> <?php echo $row['owner_email']; ?> <br> <i class="fa fa-location-arrow"> </i> <?php echo $row['address']; ?></p>
                                     <div class="d-flex align-items-center justify-content-between mt-1">
                                         <h6><strong><i class="fa fa-money" aria-hidden="true"></i> <?php echo $row['price']; ?> BDT</strong></h6>
-                                        <p><a href="view_house_details.php?id=<?php echo $row['id']; ?>">View Details---></a></p>
+                                        <p><a href="view_house_details_admin.php?id=<?php echo $row['id']; ?>">View Details---></a></p>
                                     </div>
                                     <form method="POST">
-                                        <input name="hid"  value="<?php echo $row['id']; ?>">
+                                        <input name="hid" type="hidden"  value="<?php echo $row['id']; ?>">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <button type="submit" name="approve" class="btn btn-success btn-block"> Approve </button>
