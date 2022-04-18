@@ -84,7 +84,7 @@ if (isset($_POST['add_land']))
               <li><a href="view_lands.php">Buy Land</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#team"><span>Add Property</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a class="nav-link scrollto active" href="#team"><span>Add Property</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="add_houses.php">Add Houses</a></li>
               <li><a href="add_lands.php">Add Lands</a></li>

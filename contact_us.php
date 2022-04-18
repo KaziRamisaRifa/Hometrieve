@@ -90,7 +90,7 @@ include 'connection.php';
             echo '<li class="dropdown"><a href="#team"><span>Profile</span><i class="bi bi-chevron-down"></i></a>
             <ul style="text-align:center;">
                 <li><span>Welcome</span></li>
-                <li><span>' . $_SESSION['user_first_name'] . '</span></li>
+                
                 <li><a href="user_profile.php">Profile</a></li>
                 <li><a href="logout.php">Logout</a></li>
               </ul>

@@ -16,14 +16,14 @@ if (isset($_POST['favourite'])) {
   $sql = "INSERT INTO favorites(user_id,land_id)
         VALUES ('$userid','$dbid')";
   mysqli_query($conn, $sql);
-  header("Location: view_land.php");
+  header("Location: view_lands.php");
 }
 
 if (isset($_POST['unfavourite'])) {
   $dbid = strip_tags($_POST['hid']);
   $sql = "DELETE FROM favorites WHERE land_id= '$dbid' AND user_id='$userid' ";
   mysqli_query($conn, $sql);
-  header("Location: view_land.php");
+  header("Location: view_lands.php");
 }
 
 if (isset($_POST['compare'])) {
@@ -31,14 +31,14 @@ if (isset($_POST['compare'])) {
   $sql = "INSERT INTO compare_list(user_id,land_id)
         VALUES ('$userid','$dbid')";
   mysqli_query($conn, $sql);
-  header("Location: view_land.php");
+  header("Location: view_lands.php");
 }
 
 if (isset($_POST['uncompare'])) {
   $dbid = strip_tags($_POST['hid']);
   $sql = "DELETE FROM compare_list WHERE land_id= '$dbid' AND user_id='$userid' ";
   mysqli_query($conn, $sql);
-  header("Location: view_land.php");
+  header("Location: view_lands.php");
 }
 
 ?>

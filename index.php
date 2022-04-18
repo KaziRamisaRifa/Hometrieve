@@ -62,7 +62,7 @@ if (!empty($_SESSION['user_first_name'])) {
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li class="dropdown"><a class="nav-link scrollto active" href="#team"><span>Houses</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a class="nav-link scrollto" href="#team"><span>Houses</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="view_houses_rent.php">Rent House</a></li>
               <li><a href="view_houses_buy.php">Buy House</a></li>

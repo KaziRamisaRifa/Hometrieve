@@ -90,7 +90,7 @@ if (isset($_POST['delete'])) {
                     <?php
                     $dbid = $row['id'];
                     ?>
-                    <p><a href="view_house_details.php?id=<?php echo $dbid ?>">View Details---></a></p>
+                    <p><a href="view_house_details_admin.php?id=<?php echo $dbid ?>">View Details---></a></p>
                 </div>
                                     <form method="POST">
                                         <input name="hid" type="hidden"  value="<?php echo $row['id']; ?>">

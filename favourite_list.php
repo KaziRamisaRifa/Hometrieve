@@ -29,6 +29,7 @@ if (isset($_POST['unfavourite']))
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="css/style.css" rel="stylesheet">
     <style>
         body
         {
@@ -48,6 +49,54 @@ if (isset($_POST['unfavourite']))
 
   
 <body>
+     <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+      
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li class="dropdown"><a class="nav-link scrollto active" href="#team"><span>Houses</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="view_houses_rent.php">Rent House</a></li>
+              <li><a href="view_houses_buy.php">Buy House</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href=""><span>Lands</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="view_lands.php">Buy Land</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#team"><span>Add Property</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="add_houses.php">Add Houses</a></li>
+              <li><a href="add_lands.php">Add Lands</a></li>
+            </ul>
+          </li>
+          <li><a  href="contact_us.php">Contact</a></li>
+          
+
+          <?php
+
+          if (empty($_SESSION['logged_in'])) echo '<li><a href="login.php">Login</a></li>';
+          else {
+            echo '<li class="dropdown"><a href="#team"><span>Profile</span><i class="bi bi-chevron-down"></i></a>
+            <ul style="text-align:center;">
+                <li><span>Welcome</span></li>
+                <li><span>' . $username . '</span></li>
+                <li><a href="user_profile.php">Profile</a></li>
+                <li><a href="logout.php">Logout</a></li>
+              </ul>
+          </li>';
+          }
+          ?>
+
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
    <h1 class="text-center text-dark text-capitalize pt-5">Favourite List</h1>
                 <hr class="w-25 pt-3">
                 
