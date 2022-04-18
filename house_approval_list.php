@@ -83,12 +83,15 @@ if (isset($_POST['delete'])) {
                         <li class="list-group-item">
                             <div class="media align-items-lg-center flex-column flex-lg-row p-3">
                                 <div class="media-body order-2 order-lg-1">
-                                    <h5><strong><i class="fa fa-user"></i> <?php echo $row['owner_name']; ?> | <i class="fa fa-phone"></i> <?php echo $row['owner_contact']; ?></strong></h5>
-                                    <p class="text-muted"><i class="fa fa-envelope"> </i> <?php echo $row['owner_email']; ?> <br> <i class="fa fa-location-arrow"> </i> <?php echo $row['address']; ?></p>
-                                    <div class="d-flex align-items-center justify-content-between mt-1">
-                                        <h6><strong><i class="fa fa-money" aria-hidden="true"></i> <?php echo $row['price']; ?> BDT</strong></h6>
-                                        <p><a href="view_house_details_admin.php?id=<?php echo $row['id']; ?>">View Details---></a></p>
-                                    </div>
+                                <h5><strong><?php echo $row['location']; ?> | <?php echo $row['area_size']; ?> sqft | <?php echo $row['purpose']; ?></strong></h5>
+                  <p class="text-muted"><i class="fa fa-bed"> </i> <?php echo $row['beds']; ?> Beds | <i class="fa fa-bath"></i> <?php echo $row['baths']; ?> Baths | <i class="fa fa-trello"> </i> <?php echo $row['balcony']; ?> Balcony | <i class="fa fa-arrow-up"></i> <?php echo $row['floor_no']; ?> Floor No.</p>
+                  <div class="d-flex align-items-center justify-content-between mt-1">
+                    <h6><strong><i class="fa fa-money" aria-hidden="true"></i> <?php echo $row['price']; ?> BDT</strong></h6>
+                    <?php
+                    $dbid = $row['id'];
+                    ?>
+                    <p><a href="view_house_details.php?id=<?php echo $dbid ?>">View Details---></a></p>
+                </div>
                                     <form method="POST">
                                         <input name="hid" type="hidden"  value="<?php echo $row['id']; ?>">
                                         <div class="row">

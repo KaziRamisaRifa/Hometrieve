@@ -104,38 +104,38 @@ if (isset($_POST['log_in'])) {
 
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="d-flex align-items-center">
+   <!-- ======= Header ======= -->
+   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
       <a href="index.php" class="logo"><img src="assets/image/logo1c.jpeg" alt="Hometrieve"></a>
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li class="dropdown"><a class="nav-link scrollto" href="#team"><span>Houses</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#team"><span>Houses</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="">Rent House</a></li>
-              <li><a href="">Buy House</a></li>
+              <li><a href="view_houses_rent.php">Rent House</a></li>
+              <li><a href="view_houses_buy.php">Buy House</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#team"><span>Lands</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href=""><span>Lands</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="">Buy Land</a></li>
+              <li><a href="view_lands.php">Buy Land</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#team"><span>Add property</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#team"><span>Add Property</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="add_houses.php">Add Houses</a></li>
               <li><a href="add_lands.php">Add Lands</a></li>
             </ul>
           </li>
-          <li><a class="nav-link " href="contact_us.php">Contact</a></li>
-          <li><a class="nav-link " href="signup.php">Register</a></li>
+          <li><a  href="contact_us.php">Contact</a></li>
+          
 
           <?php
 
           if (empty($_SESSION['logged_in'])) echo '<li><a class="nav-link scrollto active" href="login.php">Login</a></li>';
           else {
-            echo '<li class="dropdown"><span>Profile</span><i class="bi bi-chevron-down"></i>
+            echo '<li class="dropdown"><a href="#team"><span>Profile</span><i class="bi bi-chevron-down"></i></a>
             <ul style="text-align:center;">
                 <li><span>Welcome</span></li>
                 <li><span>' . $username . '</span></li>
@@ -145,7 +145,6 @@ if (isset($_POST['log_in'])) {
           </li>';
           }
           ?>
-
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>

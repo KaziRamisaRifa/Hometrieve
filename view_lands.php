@@ -1,8 +1,11 @@
 <?php
 // Create database connection
-session_start();
-$userid = $_SESSION['userid'];
 include 'connection.php';
+session_start();
+if($_SESSION['logged_in']==false){
+  header('Location:login.php');
+}
+$userid  = $_SESSION['userid'];
 
 $sql = "SELECT * FROM lands";
 $result = mysqli_query($conn, $sql);
@@ -90,7 +93,7 @@ if (isset($_POST['uncompare'])) {
           </li>
           <li class="dropdown"><a href="#team"><span>Lands</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="">Buy Land</a></li>
+              <li><a href="view_lands.php">Buy Land</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href="#team"><span>Add property</span> <i class="bi bi-chevron-down"></i></a>
@@ -100,7 +103,7 @@ if (isset($_POST['uncompare'])) {
             </ul>
           </li>
           <li><a class="nav-link " href="contact_us.php">Contact</a></li>
-          <li><a class="nav-link " href="signup.php">Register</a></li>
+         
 
           <?php
 
@@ -149,7 +152,16 @@ if (isset($_POST['uncompare'])) {
                     <p><a href="view_land_details.php?id=<?php echo $dbid ?>">View Details---></a></p>
                   </div>
                   <div class="d-flex align-items-center justify-content-between mt-1">
-                    <h6><strong><i class="fa fa-heart" aria-hidden="true"></i> 4</strong></h6>
+                  <?php
+                      $h_id = $row['id'];
+                      $sql = "SELECT COUNT(*) 
+                      FROM favorites
+                      WHERE land_id='$h_id'";
+                      $result1 = mysqli_query($conn, $sql);
+                      $row1 = mysqli_fetch_array($result1);
+                      $dbfav=$row1['COUNT(*)'];
+                      ?>
+                    <h6><strong><i class="fa fa-heart" aria-hidden="true"></i> <?php echo $dbfav ?></strong></h6>
                   </div>
                   <form method="POST">
                     <input name="hid" type="hidden" value="<?php echo $row['id']; ?>">

@@ -11,8 +11,17 @@ if(isset($_POST['next_btn'])){
         $password=$_SESSION['password'];
         $sql = "INSERT INTO user(id, first_name, last_name, email, contact, password) VALUES ('','$firstName','$lastName','$email','$contact','$password')";
         $result = mysqli_query($conn, $sql);
+        $sql = "SELECT id
+        FROM user
+        WHERE email='$email'";
+        $result = mysqli_query($conn,$sql);
+        $row = mysqli_fetch_array($result);
+        $dbid = $row["id"];
+        
         if($result){
             $_SESSION['logged_in'] = true;
+            $_SESSION['userid'] = $dbid;
+            $_SESSION['username'] = $firstName;
             header('Location:../index.php');
         }
         else{

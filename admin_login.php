@@ -24,8 +24,14 @@ if (isset($_POST['log_in']))
                 WHERE email='$dbemail'";
                 $result = mysqli_query($conn,$sql);
                 $row = mysqli_fetch_assoc($result);
+
                 $dbid= $row["id"];
-                header("Location: admin_dashboard.php?id=$dbid");
+                session_start();
+          $_SESSION['adminid'] = $dbid;
+          
+
+          $_SESSION['logged_in'] = true;
+                header("Location: admin_dashboard.php");
             } 
             else 
             {

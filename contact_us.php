@@ -1,7 +1,11 @@
 <?php
+session_start();
+if($_SESSION['logged_in']==true){
+  $user_id  = $_SESSION['userid'];
+  $username = $_SESSION['username'];
+}
 
-  include 'connection.php';
-
+include 'connection.php';
   if (isset($_POST['contact_us'])) 
   {
       // Set variables to represent data from database
@@ -35,6 +39,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="assets/css/contact_us.css">
+        <link href="css/style.css" rel="stylesheet">
         <style>
     body
     {
@@ -47,9 +52,58 @@
     
     </head>
     <body>
+        <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a href="index.php" class="logo"><img src="assets/image/logo1c.jpeg" alt="Hometrieve"></a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li class="dropdown"><a href="#team"><span>Home</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="view_houses_rent.php">Rent Home</a></li>
+              <li><a href="view_houses_buy.php">Buy Houses</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href=""><span>Lands</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="view_lands.php">Buy Land</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#team"><span>Add Property</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="add_houses.php">Add Houses</a></li>
+              <li><a href="add_lands.php">Add Lands</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto active" href="contact_us.php">Contact</a></li>
+          
+
+          <?php
+
+          if (empty($_SESSION['logged_in'])) echo '<li><a class="nav-link scrollto" href="login.php">Login</a></li>';
+          else {
+            echo '<li class="dropdown"><a href="#team"><span>Profile</span><i class="bi bi-chevron-down"></i></a>
+            <ul style="text-align:center;">
+                <li><span>Welcome</span></li>
+                <li><span>' . $username . '</span></li>
+                <li><a href="user_profile.php">Profile</a></li>
+                <li><a href="logout.php">Logout</a></li>
+              </ul>
+          </li>';
+          }
+          ?>
+
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
         <section id="contact">
         <div class="container-fluid">
-            <h2 class="text-center font-weight-bold text-dark text-capitalize pt-5">Contact Us</h2>
+            <h2 class="text-center font-weight-bold text-dark text-capitalize">Contact Us</h2>
             <hr class="w-25">
             <div class="row" >
                 <div class="col-lg-4 col-md-4 ml-auto">

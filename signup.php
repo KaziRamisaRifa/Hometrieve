@@ -46,6 +46,7 @@ if (isset($_POST['sign_up'])) {
     $dbid = $row["id"];
     session_start();
         $_SESSION['userid'] = $dbid;
+        $_SESSION['username'] = $dbfname;
         $_SESSION['logged_in'] = true;
         header("Location: user_profile.php");
 }

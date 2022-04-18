@@ -4,6 +4,7 @@ session_start();
 
 if (!empty($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
   $userid= $_SESSION['userid'];
+  $username = $_SESSION['username'];
 }
 
 // if($_SESSION['logged_in']==FALSE){
@@ -61,10 +62,10 @@ if (!empty($_SESSION['user_first_name'])) {
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li class="dropdown"><a class="nav-link scrollto active" href="#team"><span>Home</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a class="nav-link scrollto active" href="#team"><span>Houses</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="view_houses_rent.php">Rent Home</a></li>
-              <li><a href="view_houses_buy.php">Buy Houses</a></li>
+              <li><a href="view_houses_rent.php">Rent House</a></li>
+              <li><a href="view_houses_buy.php">Buy House</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href=""><span>Lands</span> <i class="bi bi-chevron-down"></i></a>
@@ -72,20 +73,20 @@ if (!empty($_SESSION['user_first_name'])) {
               <li><a href="view_lands.php">Buy Land</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#team"><span>Add property</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#team"><span>Add Property</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="add_houses.php">Add Houses</a></li>
               <li><a href="add_lands.php">Add Lands</a></li>
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="contact_us.php">Contact</a></li>
-          <li><a class="nav-link scrollto" href="signup.php">Register</a></li>
+          
 
           <?php
 
           if (empty($_SESSION['logged_in'])) echo '<li><a class="nav-link scrollto" href="login.php">Login</a></li>';
           else {
-            echo '<li class="dropdown"><span>Profile</span><i class="bi bi-chevron-down"></i>
+            echo '<li class="dropdown"><a href="#team"><span>Profile</span><i class="bi bi-chevron-down"></i></a>
             <ul style="text-align:center;">
                 <li><span>Welcome</span></li>
                 <li><span>' . $username . '</span></li>
@@ -261,7 +262,7 @@ if (!empty($_SESSION['user_first_name'])) {
               </div>
               <div class="card-footer">
                 <div class="text-center">
-                  <button class="btn bg-primary text-white text-left" onclick="window.location =''">Rent a house</button>
+                  <button class="btn bg-primary text-white text-left" onclick="window.location ='view_houses_rent.php'">Rent a house</button>
                 </div>
               </div>
             </div>
@@ -280,7 +281,7 @@ if (!empty($_SESSION['user_first_name'])) {
               </div>
               <div class="card-footer">
                 <div class="text-center">
-                  <button class="btn bg-primary text-white text-left" onclick="window.location =''">Buy house or land</button>
+                  <button class="btn bg-primary text-white text-left" onclick="window.location ='view_houses_buy.php'">Buy house or land</button>
                 </div>
               </div>
             </div>
@@ -299,7 +300,7 @@ if (!empty($_SESSION['user_first_name'])) {
               </div>
               <div class="card-footer">
                 <div class="text-center">
-                  <button class="btn bg-primary text-white text-left" onclick="window.location =''">Sell house or land</button>
+                  <button class="btn bg-primary text-white text-left" onclick="window.location ='view_land.php'">Sell house or land</button>
                 </div>
               </div>
             </div>

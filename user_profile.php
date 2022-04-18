@@ -89,25 +89,25 @@ $dbbadge1= $row1['COUNT(*)'];
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li class="dropdown"><a class="nav-link scrollto" href="#team"><span>Houses</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#team"><span>Houses</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="view_houses_rent.php">Rent House</a></li>
               <li><a href="view_houses_buy.php">Buy House</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#team"><span>Lands</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href=""><span>Lands</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="">Buy Land</a></li>
+              <li><a href="view_lands.php">Buy Land</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#team"><span>Add property</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#team"><span>Add Property</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="add_houses.php">Add Houses</a></li>
               <li><a href="add_lands.php">Add Lands</a></li>
             </ul>
           </li>
-          <li><a class="nav-link " href="contact_us.php">Contact</a></li>
-          <li><a class="nav-link " href="signup.php">Register</a></li>
+          <li><a class="nav-link scrollto" href="contact_us.php">Contact</a></li>
+          
 
           <?php
 
@@ -117,12 +117,12 @@ $dbbadge1= $row1['COUNT(*)'];
             <ul style="text-align:center;">
                 <li><span>Welcome</span></li>
                 <li><span>' . $username . '</span></li>
+                <li><a href="user_profile.php">Profile</a></li>
                 <li><a href="logout.php">Logout</a></li>
               </ul>
           </li>';
           }
           ?>
-          
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -130,6 +130,7 @@ $dbbadge1= $row1['COUNT(*)'];
 
     </div>
   </header><!-- End Header -->
+
   <br><br><br><br>
   <div class="container">
 
@@ -222,7 +223,7 @@ $dbbadge1= $row1['COUNT(*)'];
       </div>
       <div class="col-md-2">
         <br>
-        <a class="button1" href="donor_login.php" role="button">Edit Profile</a>
+        <a class="button1" href="edit_profile.php" role="button">Edit Profile</a>
         <br><br>
         <a class="button1" href="view_inbox.php"  ><span>Inbox  </span><span class="badge"><?php echo $dbbadge; ?></span></a>
         <br><br>
@@ -233,7 +234,7 @@ $dbbadge1= $row1['COUNT(*)'];
       <div class="col-md-5 col-lg-5 col-sm-12">
         <div class="row pt-5">
 
-          <button class="button2" role="button" onclick="window.location ='view_houses.php'"><i class="fa fa-search"></i> Search a house for rent now!</button>
+          <button class="button2" role="button" onclick="window.location ='view_houses_rent.php'"><i class="fa fa-search"></i> Search a house for rent now!</button>
         </div>
         <div class="row pt-5">
           <button class="button2" onclick="window.location ='add_houses.php'" role="button"><i class="fa fa-home"> Add House + </i> </button>

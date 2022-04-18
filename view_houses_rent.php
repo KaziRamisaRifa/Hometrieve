@@ -1,9 +1,11 @@
 <?php
 // Create database connection
-session_start();
-$userid = $_SESSION['userid'];
 include 'connection.php';
-
+session_start();
+if($_SESSION['logged_in']==false){
+  header('Location:login.php');
+}
+$userid  = $_SESSION['userid'];
 $sql = "SELECT * FROM houses WHERE purpose='For Rent'";
 $result = mysqli_query($conn, $sql);
 
@@ -55,6 +57,7 @@ if (isset($_POST['uncompare'])) {
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
   <link href="css/style.css" rel="stylesheet">
   <style>
     body {
@@ -88,23 +91,23 @@ if (isset($_POST['uncompare'])) {
               <li><a href="view_houses_buy.php">Buy House</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#team"><span>Lands</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href=""><span>Lands</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="">Buy Land</a></li>
+              <li><a href="view_lands.php">Buy Land</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#team"><span>Add property</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#team"><span>Add Property</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="add_houses.php">Add Houses</a></li>
               <li><a href="add_lands.php">Add Lands</a></li>
             </ul>
           </li>
-          <li><a class="nav-link " href="contact_us.php">Contact</a></li>
-          <li><a class="nav-link " href="signup.php">Register</a></li>
+          <li><a  href="contact_us.php">Contact</a></li>
+          
 
           <?php
 
-          if (empty($_SESSION['logged_in'])) echo '<li><a class="nav-link scrollto" href="login.php">Login</a></li>';
+          if (empty($_SESSION['logged_in'])) echo '<li><a href="login.php">Login</a></li>';
           else {
             echo '<li class="dropdown"><a href="#team"><span>Profile</span><i class="bi bi-chevron-down"></i></a>
             <ul style="text-align:center;">
@@ -116,7 +119,6 @@ if (isset($_POST['uncompare'])) {
           </li>';
           }
           ?>
-
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -142,7 +144,7 @@ if (isset($_POST['uncompare'])) {
                   <h5><strong><?php echo $row['location']; ?> | <?php echo $row['area_size']; ?> sqft | <?php echo $row['purpose']; ?></strong></h5>
                   <p class="text-muted"><i class="fa fa-bed"> </i> <?php echo $row['beds']; ?> Beds | <i class="fa fa-bath"></i> <?php echo $row['baths']; ?> Baths | <i class="fa fa-trello"> </i> <?php echo $row['balcony']; ?> Balcony | <i class="fa fa-arrow-up"></i> <?php echo $row['floor_no']; ?> Floor No.</p>
                   <div class="d-flex align-items-center justify-content-between mt-1">
-                    <h6><strong><i class="fa fa-money" aria-hidden="true"></i> <?php echo $row['price']; ?> BDT</strong></h6>
+                    <h6><strong><i class="fa fa-money" aria-hidden="true"></i> <?php echo $row['price']; ?> BDT | Tier: <?php echo $row['tier']; if($row['tier']=='Platinum') { ?> <i class="fa fa-star" aria-hidden="true"></i><?php } else if($row['tier']=='Gold') { ?> <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><?php } else if($row['tier']=='Diamond') { ?> <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><?php } ?></strong></h6>
                     <?php
                     $dbid = $row['id'];
                     ?>
@@ -152,14 +154,13 @@ if (isset($_POST['uncompare'])) {
                   <?php
                       $h_id = $row['id'];
                       $sql = "SELECT COUNT(*) 
-                      FROM contact_owner
-                      WHERE user_id='$userid' AND reply_status='Active'";
-                      $sql = "SELECT house_id FROM favorites where user_id='$userid' AND house_id='$h_id'";
+                      FROM favorites
+                      WHERE house_id='$h_id'";
                       $result1 = mysqli_query($conn, $sql);
                       $row1 = mysqli_fetch_array($result1);
-                      if ($row1 == NULL) {
+                      $dbfav=$row1['COUNT(*)'];
                       ?>
-                    <h6><strong><i class="fa fa-heart" aria-hidden="true"></i> 4</strong></h6>
+                    <h6><strong><i class="fa fa-heart" aria-hidden="true"></i> <?php echo $dbfav ?></strong></h6>
                   </div>
                   <form method="POST">
                     <input name="hid" type="hidden" value="<?php echo $row['id']; ?>">

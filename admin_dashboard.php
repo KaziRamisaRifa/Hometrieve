@@ -1,6 +1,12 @@
 <?php
 
 include 'connection.php';
+session_start();
+if($_SESSION['logged_in']==false){
+  header('Location:admin_login.php');
+}
+
+$adminid = $_SESSION['adminid'];
 
 $sql = "SELECT ((select count(*) from approval_house)+(select count(*) from approval_land))as num";
 
@@ -10,6 +16,13 @@ $pending = mysqli_fetch_assoc($result);
 $sql = "SELECT ((select count(*) from houses)+(select count(*) from lands))as num";
 $result = mysqli_query($conn, $sql);
 $item = mysqli_fetch_assoc($result);
+
+$sql = "SELECT count_no 
+FROM app_count";
+$result = mysqli_query($conn, $sql);
+$row1 = mysqli_fetch_assoc($result);
+$dbbadge1= $row1['count_no'];
+
 ?>
 
 
@@ -92,7 +105,7 @@ $item = mysqli_fetch_assoc($result);
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="#">
+                    <a href="logout.php">
                         <i class='bx bx-log-out icon'></i>
                         <span class="text nav-text">Logout</span>
                     </a>
@@ -124,7 +137,7 @@ $item = mysqli_fetch_assoc($result);
                     <div class="card-body">
                         <i class="bi bi-check2-circle" style="color:blue;"></i>
                         <h5 class="card-title">Total Approved</h5>
-                        <p class="card-text"><span class="count">50</span></p>
+                        <p class="card-text"><span class="count"><?php echo $item['num'] ?></span></p>
                     </div>
                 </div>
             </div>
