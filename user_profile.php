@@ -207,7 +207,7 @@ $dbbadge1= $row1['COUNT(*)'];
                 <label>Compare List (House)</label>
               </div>
               <div class="col-md-6">
-                <p><a href="favourite_list.php">View</a></p>
+                <p><a href="compare_list_house.php">View</a></p>
               </div>
             </div>
             <div class="row">
@@ -215,7 +215,7 @@ $dbbadge1= $row1['COUNT(*)'];
                 <label>Compare List (Land)</label>
               </div>
               <div class="col-md-6">
-                <p><a href="compare_list.php">View</a></p>
+                <p><a href="compare_list_land.php">View</a></p>
               </div>
             </div>
           </div>

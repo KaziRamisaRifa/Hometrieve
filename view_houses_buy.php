@@ -17,14 +17,14 @@ if (isset($_POST['favourite'])) {
   $sql = "INSERT INTO favorites(user_id,house_id)
         VALUES ('$userid','$dbid')";
   mysqli_query($conn, $sql);
-  header("Location: view_houses_rent.php");
+  header("Location: view_houses_buy.php");
 }
 
 if (isset($_POST['unfavourite'])) {
   $dbid = strip_tags($_POST['hid']);
   $sql = "DELETE FROM favorites WHERE house_id= '$dbid' AND user_id='$userid' ";
   mysqli_query($conn, $sql);
-  header("Location: view_houses_rent.php");
+  header("Location: view_houses_buy.php");
 }
 
 if (isset($_POST['compare'])) {
@@ -32,14 +32,14 @@ if (isset($_POST['compare'])) {
   $sql = "INSERT INTO compare_list(user_id,house_id)
         VALUES ('$userid','$dbid')";
   mysqli_query($conn, $sql);
-  header("Location: view_houses_rent.php");
+  header("Location: view_houses_buy.php");
 }
 
 if (isset($_POST['uncompare'])) {
   $dbid = strip_tags($_POST['hid']);
   $sql = "DELETE FROM compare_list WHERE house_id= '$dbid' AND user_id='$userid' ";
   mysqli_query($conn, $sql);
-  header("Location: view_houses_rent.php");
+  header("Location: view_houses_buy.php");
 }
 
 ?>

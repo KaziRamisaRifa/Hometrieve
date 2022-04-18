@@ -30,6 +30,9 @@ include 'connection.php';
         <meta charset="utf-8">
         
         <link href="assets/image/logo1c.jpeg" rel="icon">
+
+          <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -38,6 +41,7 @@ include 'connection.php';
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
         <link rel="stylesheet" href="assets/css/contact_us.css">
         <link href="css/style.css" rel="stylesheet">
         <style>
@@ -86,7 +90,7 @@ include 'connection.php';
             echo '<li class="dropdown"><a href="#team"><span>Profile</span><i class="bi bi-chevron-down"></i></a>
             <ul style="text-align:center;">
                 <li><span>Welcome</span></li>
-                <li><span>' . $username . '</span></li>
+                <li><span>' . $_SESSION['user_first_name'] . '</span></li>
                 <li><a href="user_profile.php">Profile</a></li>
                 <li><a href="logout.php">Logout</a></li>
               </ul>

@@ -174,7 +174,7 @@ if (!empty($_SESSION['user_first_name'])) {
         <form action="search.php" method="POST">
           <div class="row g-3">
 
-            <div class="col-md-6">
+            <div class="col-md-3">
               <label for="location" class="form-label">Location</label>
               <select name="location" class="form-select" id="location" aria-label="Select Location" required>
                 <option value="" disabled selected>Select Location</option>
@@ -206,6 +206,16 @@ if (!empty($_SESSION['user_first_name'])) {
                 <option value="Apartment">Apartment</option>
                 <option value="Land">Land</option>
                 <option value="Bachelor">Bachelor</option>
+              </select>
+            </div>
+            
+            <div class="col-md-3">
+              <label for="type" class="form-label">Tier</label>
+              <select name="tier" class="form-select" id="tier" aria-label="Tier" required>
+                <option value="" disabled selected>Select tier</option>
+                <option value="Platinum">Platinum</option>
+                <option value="Gold">Gold</option>
+                <option value="Diamond">Diamond</option>
               </select>
             </div>
 
@@ -300,7 +310,7 @@ if (!empty($_SESSION['user_first_name'])) {
               </div>
               <div class="card-footer">
                 <div class="text-center">
-                  <button class="btn bg-primary text-white text-left" onclick="window.location ='view_land.php'">Sell house or land</button>
+                  <button class="btn bg-primary text-white text-left" onclick="window.location ='view_lands.php'">Sell house or land</button>
                 </div>
               </div>
             </div>

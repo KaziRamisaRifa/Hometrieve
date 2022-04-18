@@ -1,3 +1,7 @@
+<?php
+session_start();
+include 'connection.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,45 +38,53 @@
 <body>
 
     <!-- ======= Header ======= -->
-    <header id="header" class="d-flex align-items-center">
-        <div class="container d-flex align-items-center justify-content-between">
-            <a href="index.php" class="logo"><img src="assets/image/logo1c.jpeg" alt="Hometrieve"></a>
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a href="index.php" class="logo"><img src="assets/image/logo1c.jpeg" alt="Hometrieve"></a>
 
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li class="dropdown"><a class="nav-link scrollto active" href="#team"><span>Home</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="">Rent Home</a></li>
-                            <li><a href="">Buy Houses</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#team"><span>Lands</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="">Buy Land</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#team"><span>Add property</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="add_houses.php">Add Houses</a></li>
-                            <li><a href="add_lands.php">Add Lands</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="nav-link scrollto" href="#">Contact</a></li>
-                    <li><a class="nav-link scrollto" href="#">Register</a></li>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li class="dropdown"><a class="nav-link scrollto active" href="#team"><span>Houses</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="view_houses_rent.php">Rent House</a></li>
+              <li><a href="view_houses_buy.php">Buy House</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href=""><span>Lands</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="view_lands.php">Buy Land</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#team"><span>Add Property</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="add_houses.php">Add Houses</a></li>
+              <li><a href="add_lands.php">Add Lands</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="contact_us.php">Contact</a></li>
+          
 
-                    <?php
-                    $logged_in = FALSE;
+          <?php
 
-                    if (!isset($username)) echo '<li><a class="nav-link scrollto" href="login.php">Login</a></li>';
-                    else echo '<li><a href="logout.php">' . $username . '</a></li>';
-                    ?>
+          if (empty($_SESSION['logged_in'])) echo '<li><a class="nav-link scrollto" href="login.php">Login</a></li>';
+          else {
+            echo '<li class="dropdown"><a href="#team"><span>Profile</span><i class="bi bi-chevron-down"></i></a>
+            <ul style="text-align:center;">
+                <li><span>Welcome</span></li>
+                <li><span>' . $_SESSION['user_first_name'] . '</span></li>
+                <li><a href="user_profile.php">Profile</a></li>
+                <li><a href="logout.php">Logout</a></li>
+              </ul>
+          </li>';
+          }
+          ?>
 
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
 
-        </div>
-    </header><!-- End Header -->
+    </div>
+  </header><!-- End Header -->
 
     <main id="main" data-aos="fade-up">
 
@@ -96,8 +108,8 @@
                             <div class="member-img">
                                 <img src="assets/image/team/Khalid Bin Shafiq.jpg" class="img-fluid" alt="">
                                 <div class="social">
-                                    <a href="#" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
-                                    <a href="#" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                                    <a href="https://www.facebook.com/khalid.brinto" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+                                    <a href="https://www.linkedin.com/in/khalid-bin-shafiq/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
                                 </div>
                             </div>
                             <div class="member-info">
@@ -112,8 +124,8 @@
                             <div class="member-img">
                                 <img src="assets/image/team/Kazi Ramisa Rifa1.jpg" class="img-fluid" alt="">
                                 <div class="social">
-                                    <a href="#" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
-                                    <a href="#" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                                    <a href="https://www.facebook.com/ramisa.rifa01" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+                                    <a href="https://www.linkedin.com/in/ramisa-rifa-63416820b" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
                                 </div>
                             </div>
                             <div class="member-info">

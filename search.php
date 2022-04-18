@@ -11,11 +11,13 @@ if (!empty($_POST['location']) && !empty($_POST['purpose']) && !empty($_POST['ty
   $_SESSION['search_location'] = $_POST['location'];
   $_SESSION['search_purpose'] = $_POST['purpose'];
   $_SESSION['search_type'] = $_POST['type'];
+  $_SESSION['search_tier'] = $_POST['tier'];
 } else {
   # code...
 }
-
-$userid = $_SESSION['userid'];
+if(!empty($_SESSION['userid'])){
+  $userid = $_SESSION['userid'];
+}
 
 
 if (isset($_POST['favourite'])) {
@@ -142,6 +144,7 @@ if (isset($_POST['uncompare'])) {
           $location = $_SESSION['search_location'];
           $purpose = $_SESSION['search_purpose'];
           $type = $_SESSION['search_type'];
+          $tier = $_SESSION['search_tier'];
 
           $sql = "SELECT * FROM houses WHERE location='$location' AND purpose='$purpose' AND type='$type';";
           $result = $conn->query($sql);
