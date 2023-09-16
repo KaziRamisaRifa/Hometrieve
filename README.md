@@ -10,3 +10,24 @@ description of the aims and goals, applications of our website, the tools we use
 project, design and implementations, evaluation and projected timeline to finish our project. We
 aim to achieve some certain goals to make users life easier for seeking their desired
 accommodation at any situation using internet.
+
+## Application of Project
+This web application can be used by everyone looking for a convenient way to rent
+accommodation and doesn’t have time to wander around the streets in search of a place to stay.
+Special features will target groups of people to facilitate different types of accommodation. For
+example, temporary stayover, emergency medical accommodation, tier-based accommodation.
+The user-friendly UI and mechanisms help users easily browse apartments/houses of their liking
+and act as a middle-man establishing connection between the buyer/tenant and the
+seller/landlord. The web application would be fast, responsive and can be accessed from any
+device with browsers. i.e., laptop, smartphones.
+
+## Tool
+HTML, CSS, Bootstrap for frontend design
+JavaScript, jQuery for responsive frontend.
+PHP for backend, data and request handling.
+MySQL for generation SQL queries, creating tables and defining relational database.
+XAMPP for hosting and testing webpage on localhost.
+Git for version controlling
+draw.io for drafting structure
+Visual Studio Code for developing the web application.
+
