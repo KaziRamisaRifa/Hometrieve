@@ -1,5 +1,5 @@
 # Hometrieve
-‘Hometrieve’ is a web-based platform that provides a way for the user to search a house for rent
+‘Hometrieve’ is a web-based platform that provides a way for the user to search for a house for rent
 and both house buyer and seller can deal under this system. This web interface provides relevant data related to
 houses and lands which users can get using the internet at any time. 
 
