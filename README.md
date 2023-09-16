@@ -1,26 +1,15 @@
 # Hometrieve
 ‘Hometrieve’ is a web-based platform that provides a way for the user to search a house for rent
-and both house buyer and seller can deal under this system. The main objective of this project is
-to develop an online service where user can search and get their desired houses as well as lands.
-At present, most of the people travel one place to another for searching of a proper house which
-takes a lot of time. This website consumes their valuable time and give an online view of houses
-and lands placed in different locations. This web interface provides relevant data related to
-houses and lands which user can get using internet at any time. In this report, there is a
-description of the aims and goals, applications of our website, the tools we used to complete our
-project, design and implementations, evaluation and projected timeline to finish our project. We
-aim to achieve some certain goals to make users life easier for seeking their desired
-accommodation at any situation using internet.
+and both house buyer and seller can deal under this system. This web interface provides relevant data related to
+houses and lands which users can get using the internet at any time. 
 
 ## Application of Project
 This web application can be used by everyone looking for a convenient way to rent
-accommodation and doesn’t have time to wander around the streets in search of a place to stay.
+accommodation and doesn’t have time to wander around the streets searching for a place to stay.
 Special features will target groups of people to facilitate different types of accommodation. For
-example, temporary stayover, emergency medical accommodation, tier-based accommodation.
-The user-friendly UI and mechanisms help users easily browse apartments/houses of their liking
-and act as a middle-man establishing a connection between the buyer/tenant and the
-seller/landlord. 
+example, temporary stayover, emergency medical accommodation, and tier-based accommodation.
 
-## Tool
+## Tools
 HTML, CSS, and Bootstrap for frontend design.
 
 JavaScript, and jQuery for responsive frontend.
@@ -34,4 +23,21 @@ Git for version controlling.
 draw.io for drafting structure.
 
 Visual Studio Code for developing the web application.
+
+## Interface
+![image](https://github.com/KaziRamisaRifa/Hometrieve/assets/76848879/d223220e-d7e4-4235-87f0-940a650faab5)
+![image](https://github.com/KaziRamisaRifa/Hometrieve/assets/76848879/564916d9-8358-40db-ad6e-9ab084fbf01a)
+![image](https://github.com/KaziRamisaRifa/Hometrieve/assets/76848879/7b7357d4-78e4-4288-b095-f0c3501de66b)
+![image](https://github.com/KaziRamisaRifa/Hometrieve/assets/76848879/3d822e44-b27b-4032-b98c-3e222f535983)
+![image](https://github.com/KaziRamisaRifa/Hometrieve/assets/76848879/c3d201a8-d7d3-4b69-aab4-d5c128b97bfb)
+![image](https://github.com/KaziRamisaRifa/Hometrieve/assets/76848879/33452d19-40f0-4bb5-96ce-c27fa71145bc)
+![image](https://github.com/KaziRamisaRifa/Hometrieve/assets/76848879/70c98fb0-ddab-4b4d-8ba7-c5712a0a9314)
+
+
+
+
+
+
+
+
 
