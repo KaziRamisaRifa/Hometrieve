@@ -10,19 +10,13 @@ Special features will target groups of people to facilitate different types of a
 example, temporary stayover, emergency medical accommodation, and tier-based accommodation.
 
 ## Tools
-HTML, CSS, and Bootstrap for frontend design.
-
-JavaScript, and jQuery for responsive frontend.
-
-PHP for backend, data, and request handling.
-
-MySQL for generation of SQL queries, creating tables, and defining relational database.
-
-Git for version controlling.
-
-draw.io for drafting structure.
-
-Visual Studio Code for developing the web application.
+    -> HTML, CSS, and Bootstrap for frontend design.
+    -> JavaScript, and jQuery for responsive frontend.
+    -> PHP for backend, data, and request handling.
+    -> MySQL for generation of SQL queries, creating tables, and defining relational database.
+    -> Git for version controlling.
+    -> draw.io for drafting structure.
+    -> Visual Studio Code for developing the web application.
 
 ## Interface
 ![image](https://github.com/KaziRamisaRifa/Hometrieve/assets/76848879/d223220e-d7e4-4235-87f0-940a650faab5)
